@@ -1,7 +1,7 @@
 //PeasyCam cam;
 
 Star[] stars = new Star[500];
-Portal port;
+Portal open_port;
 createPortal createPort;
 Game_Of_Life[] GoL = new Game_Of_Life[10];
 
@@ -11,16 +11,16 @@ float speed;
 void setup() {
   size(800, 600);
   colorMode(HSB);
-  port = new Portal();
+  open_port = new Portal();
   createPort = new createPortal();
 
   //  cam =new PeasyCam(this, 100);
   for (int i = 0; i < stars.length; i++) {
-    stars[i] = new Star(port);
+    stars[i] = new Star(open_port);
   }
 
   for (int i = 0; i < GoL.length; i++) {
-    GoL[i] = new Game_Of_Life(port);
+    GoL[i] = new Game_Of_Life(open_port);
   }
 }
 
@@ -30,7 +30,7 @@ void draw()
   background(200, 80, 80);
   noFill();
 
-  port.display();
+  open_port.display();
   createPort.display();
 
 

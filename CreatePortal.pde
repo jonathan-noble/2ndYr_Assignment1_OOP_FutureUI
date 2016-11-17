@@ -16,7 +16,7 @@ class createPortal
 
   void display()
   {
-    
+
     stroke( random(mouseX, 50), 100, 200);
     strokeWeight(random(5, 7) );
     fill(25, 240, 255);
@@ -33,19 +33,17 @@ class createPortal
         ellipse(x[pos], y[pos], radius, radius);
       }
     }
-    
-    
   }
 
-    void mouseMoved(int c) {
-      x[iPos] = mouseX;
-      y[iPos] = mouseY;
-      count = c;
-    }
-    
-    //xx
-    void mouseReleased()
-    {
-      clear();
-    }
+  void mouseMoved(int c) {
+    x[iPos] = mouseX;
+    y[iPos] = mouseY;
+    count = c;
+  }
+
+  //xx
+  void mouseReleased()
+  {
+    clear();
+  }
 }
