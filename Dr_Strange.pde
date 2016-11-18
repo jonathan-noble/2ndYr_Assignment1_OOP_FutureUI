@@ -1,4 +1,7 @@
-//PeasyCam cam;
+/*import peasy.*;
+
+PeasyCam cam; 
+*/
 
 Star[] stars = new Star[500];
 Portal open_port;
@@ -9,12 +12,19 @@ Game_Of_Life[] GoL = new Game_Of_Life[10];
 float speed;
 
 void setup() {
+ // size(800, 600, P3D);
   size(800, 600);
   colorMode(HSB);
+  
+  /*
+   cam = new PeasyCam(this, 500);
+  cam.setMinimumDistance(50);
+  cam.setMaximumDistance(500);
+  */
+  
   open_port = new Portal();
   createPort = new createPortal();
 
-  //  cam =new PeasyCam(this, 100);
   for (int i = 0; i < stars.length; i++) {
     stars[i] = new Star(open_port);
   }
