@@ -17,7 +17,7 @@ class createPortal
   void display()
   {
 
-    stroke( random(mouseX, 50), 100, 200);
+    stroke(random(45), 255, 255);
     strokeWeight(random(5, 7) );
     fill(25, 240, 255);
     // Cycle between 0 and the number of elements

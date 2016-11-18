@@ -7,27 +7,32 @@ class Portal {
   int c;
   int n_spoke = 6;
   float theta = 100;
-
+ // PVector v;
 
   //Constructor
   Portal() {
     x = width/2;
     y = height/2;
-    radius = 300;
+    radius = 450;
     r = 0;
     c = 30;
+   // v = 0;
   }
 
 
   void display()
   {
-    stroke(random(0, 100), 255, 255, c);
-    strokeWeight(6);
+    float hu = 0;
+   // PVector offset = PVector.random3D();
+    //v.add(offset);
+    
+    stroke(random(20, 45), 255, 255, c);
+    strokeWeight(3);
     smooth();
     fill(0, 0, 0, c);
 
     //xx
-    c = c + 1;
+    c = c + 2;
     /*if(c > 0)
      {
      c = 30;
@@ -64,7 +69,7 @@ class Portal {
       popMatrix();
       noFill();
       ellipse(x, y, radius-200, radius-200);
-      
+
       float r = 45;
       float r2 = 30;
       pushMatrix();
@@ -77,7 +82,6 @@ class Portal {
       }
       endShape(CLOSE);
       popMatrix();
-      
     }
   }
 }
