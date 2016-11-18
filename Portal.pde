@@ -1,5 +1,5 @@
 class Portal {
-
+  backGround bg;
   float x ;
   float y ;
   float radius;
@@ -10,12 +10,13 @@ class Portal {
  // PVector v;
 
   //Constructor
-  Portal() {
+  Portal(backGround bg) {
     x = width/2;
     y = height/2;
     radius = 450;
     r = 0;
     c = 30;
+    this.bg = bg;
    // v = 0;
   }
 
@@ -41,7 +42,24 @@ class Portal {
 
     rectMode(CENTER);
     if (mousePressed) {
-      ellipse(x, y, radius+20, radius+20);
+         if (mousePressed)
+       
+
+      // if (this is too far from the center)
+      if (this.bg.x + this.bg.y / 2.3 < dist(0, 0, x, y) )
+      {
+
+        return;
+      }
+    
+      pushMatrix();
+      translate(width/2, height/2);
+      rotate(r);
+      // Particles rotating around this ellipse
+      ellipse(0, 0, radius+20, radius+20);
+      r = r + 0.02;
+      popMatrix();
+      
       ellipse(x, y, radius, radius);
 
 
@@ -50,7 +68,7 @@ class Portal {
         return;
       }
 
-      fill(50);
+      fill(0);
       ellipse(x, y, radius+20, radius+20);
       ellipse(x, y, radius, radius);
 
