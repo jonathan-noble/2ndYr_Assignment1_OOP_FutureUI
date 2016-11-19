@@ -1,33 +1,32 @@
 class Portal {
-  backGround bg;
+  // backGround bg;
   float x ;
   float y ;
   float radius;
   float r;
   int c;
   int n_spoke = 6;
-  float theta = 100;
- // PVector v;
+  // PVector v;
 
   //Constructor
-  Portal(backGround bg) {
+  Portal() {
     x = width/2;
     y = height/2;
     radius = 450;
     r = 0;
     c = 30;
-    this.bg = bg;
-   // v = 0;
+    // this.bg = bg;
+    // v = 0;
   }
 
 
   void display()
   {
     float hu = 0;
-   // PVector offset = PVector.random3D();
+    // PVector offset = PVector.random3D();
     //v.add(offset);
-    
-    stroke(random(20, 45), 255, 255, c);
+
+    stroke(random(20, 45), 255, random(200, 255), c);
     strokeWeight(3);
     smooth();
     fill(0, 0, 0, c);
@@ -40,26 +39,26 @@ class Portal {
      } */
 
 
-    rectMode(CENTER);
     if (mousePressed) {
-         if (mousePressed)
-       
+
 
       // if (this is too far from the center)
-      if (this.bg.x + this.bg.y / 2.3 < dist(0, 0, x, y) )
-      {
+      /*(  if (this.bg.x + this.bg.y / 2.3 < dist(0, 0, x, y) )
+       {
+       
+       return;
+       }
+       */
 
-        return;
-      }
-    
       pushMatrix();
       translate(width/2, height/2);
       rotate(r);
       // Particles rotating around this ellipse
       ellipse(0, 0, radius+20, radius+20);
       r = r + 0.02;
+
       popMatrix();
-      
+
       ellipse(x, y, radius, radius);
 
 
@@ -68,38 +67,45 @@ class Portal {
         return;
       }
 
-      fill(0);
+      fill(200,80,80);
       ellipse(x, y, radius+20, radius+20);
       ellipse(x, y, radius, radius);
 
       pushMatrix();
+      rectMode(CENTER);
       translate(width/2, height/2);
       rotate(r);
       rect(0, 0, radius-150, radius-150);
-      r = r + 0.01;
+      r = r + 0.02;
       popMatrix();
 
       pushMatrix();
       translate(width/2, height/2);
+      rectMode(CENTER);
       rotate(-r);
       rect(0, 0, radius-150, radius-150);
-      r = r + 0.01;
+      r = r + 0.02;
       popMatrix();
       noFill();
       ellipse(x, y, radius-200, radius-200);
 
-      float r = 45;
-      float r2 = 30;
+
       pushMatrix();
-      beginShape();
-      for (int i = 0; i<n_spoke; i++) {
-        vertex(x + r * cos(theta), y + r * sin(theta));
+      star(123, 85, 100);
+      popMatrix();
+    }
+  }
+
+  void star(float r1, float r2, float theta )
+  {
+    beginShape();
+    for (int i = 0; i<n_spoke; i++) {
+        vertex(x + cos(theta) * r1, y + sin(theta) * r1 );
         theta += PI/ n_spoke;
-        vertex(x + r2* cos(theta), y + r2 * sin(theta));
+        vertex(x + cos(theta) * r2, y + sin(theta) * r2);
         theta += PI/ n_spoke;
       }
       endShape(CLOSE);
-      popMatrix();
-    }
+    
   }
 }

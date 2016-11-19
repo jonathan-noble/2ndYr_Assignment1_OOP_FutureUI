@@ -16,7 +16,7 @@ class backGround {
   }
 
   void update() {
-    z = z - speed;
+    z -= speed;
     if (z < 1) {
       z = width/2;
       x = random(-width/2, width/2);
@@ -44,7 +44,7 @@ class backGround {
 
     pz = z;
 
-    stroke(random(mouseX, 255), 255, 255);
+    stroke(random(mouseX/6, 250), 200, 200);
 
     line(px, py, sx, sy);
   

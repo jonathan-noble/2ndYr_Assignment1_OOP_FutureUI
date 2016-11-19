@@ -24,7 +24,7 @@ void setup() {
   for (int i = 0; i < bg.length; i++) {
     bg[i] = new backGround();
   }
- 
+
 
   open_port = new Portal();
   createPort = new createPortal();
@@ -48,10 +48,8 @@ void draw()
   open_port.display();
   createPort.display();
 
-
-  // Draw everything relative to (width, height)
   translate(width/2, height/2);
-    for (backGround backg : bg) {
+  for (backGround backg : bg) {
     backg.update();
     backg.display();
   }
