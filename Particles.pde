@@ -20,7 +20,7 @@ class Particles {
   }
 
   void update() {
-   // angle = angle - speed;      
+     angle = angle - speed;      
     p_size += p_thick;
     //If p_size gets bigger, then p_thick resets back to 0
     if (p_size > 15 || p_size <0) {
@@ -30,11 +30,11 @@ class Particles {
 
 
   void display() {
-    if(mousePressed)  {
-    fill(H, S, B);
+    
+    //fill(H, S, B);
     rotate(radians(angle));
     ellipse(X, Y, p_size, p_size);
-    }
+    
   }
 
   void fadeToWhite() {

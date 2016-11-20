@@ -1,10 +1,11 @@
 //**
 class backGround {
-  Portal port;
   // PVector v1;
+  Portal port;
   float x;
   float y;
   float z;
+
   float pz;
 
   backGround(Portal port) {
@@ -17,7 +18,7 @@ class backGround {
   }
 
   void update() {
-    z -= speed;
+    z = z - speed;
     if (z < 1) {
       z = width/2;
       x = random(-width/2, width/2);
@@ -29,38 +30,37 @@ class backGround {
   void display()
   {
 
+
     float sx = map(x / z, 0, 1, 0, width/2);
     float sy = map(y / z, 0, 1, 0, height/2);
 
-
-    if (mousePressed)
+    if (mousePressed == true)
     {
-      // if (this is too far from the center)
-      if (this.port.radius / 2.3 > dist(0, 0, x, y) )
+      // if the port is executed then the background will not execute under the portal's radius 
+      if (this.port.radius /2 > dist(0, 0, sx, sy) )
       {
-
         return;
       }
-
-      {
-
-
-        float r = map(z, 0, width/2, 16, 0);
-        fill(255);
-        noStroke();
-        ellipse(sx, sy, r, r);
+    }
 
 
+    float r = map(z, 0, width/2, 16, 0);
+    fill(random(mouseX/6, 255), 255, 255);
+    noStroke();
+    ellipse(sx, sy, r, r);
 
-        float px = map(x / pz, 0, 1, 0, width/2);
-        float py = map(y / pz, 0, 1, 0, height/2);
 
-        pz = z;
 
-        stroke(random(mouseX/6, 250), 200, 200);
+    float px = map(x / pz, 0, 1, 0, width/2);
+    float py = map(y / pz, 0, 1, 0, height/2);
 
-        line(px, py, sx, sy);
-      }
+    if (this.port.radius /2 < dist(0, 0, px, py) )
+    {
+      pz = z;
+
+      stroke(random(mouseX/6, 255), 255, 255);
+
+      line(px, py, sx, sy);
     }
   }
 }
