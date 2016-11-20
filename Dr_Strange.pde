@@ -2,10 +2,11 @@
  
  PeasyCam cam; 
  */
-int num = 500;
+int num = 5;
 backGround[] bg = new backGround[600];
 Star[] stars = new Star[500];
 Portal open_port;
+Ecolor[] ec=new Ecolor[num];
 Particles[] part = new Particles[num];
 createPortal createPort;
 Game_Of_Life[] GoL = new Game_Of_Life[10];
@@ -24,15 +25,15 @@ void setup() {
    cam.setMaximumDistance(500);
    */
   for (int i = 0; i < bg.length; i++) {
-    bg[i] = new backGround();
+    bg[i] = new backGround(open_port);
   }
 
 
   open_port = new Portal();
 
-  for (int i = 0; i < num; i++) {
-    part[i] = new Particles(width/4, height/5, random(250), random(0.1, 0.2), random(10)
-    random(0.1, 1.5));
+  for (int i=0; i<num; i++) {
+    part[i]=new Particles();
+     ec[i]=new Ecolor(random(25,40), 255, (255));
   }
 
   createPort = new createPortal();
@@ -57,10 +58,12 @@ void draw()
 
 
   translate(width/2, height/2);
-   for (int i=0; i<num; i++) {
+  for (int i=0; i<num; i++) {
       part[i].update();
       part[i].display();
+      ec[i].display();
     }
+    
   for (backGround backg : bg) {
     backg.update();
     backg.display();
@@ -76,8 +79,8 @@ void draw()
     if (key == '1')
     {
       for (Star star : stars) {
-        //  star.update();
-        //  star.display();
+          star.update();
+         star.display();
       }
     }
     if (key == '2')
