@@ -1,7 +1,6 @@
 class Portal {
   // backGround bg;
-  float x ;
-  float y ;
+  float x, y;
   float radius;
   float r;
   int c;
@@ -67,7 +66,7 @@ class Portal {
         return;
       }
 
-      fill(200,80,80);
+      fill(200, 80, 80);
       ellipse(x, y, radius+20, radius+20);
       ellipse(x, y, radius, radius);
 
@@ -91,7 +90,11 @@ class Portal {
 
 
       pushMatrix();
-      star(123, 85, 100);
+      star(123, 60, 100);
+      popMatrix();
+
+      pushMatrix();
+      star(-123, -60, 100);
       popMatrix();
     }
   }
@@ -100,12 +103,13 @@ class Portal {
   {
     beginShape();
     for (int i = 0; i<n_spoke; i++) {
-        vertex(x + cos(theta) * r1, y + sin(theta) * r1 );
-        theta += PI/ n_spoke;
-        vertex(x + cos(theta) * r2, y + sin(theta) * r2);
-        theta += PI/ n_spoke;
-      }
-      endShape(CLOSE);
-    
+      vertex(x + cos(theta) * r1, y + sin(theta) * r1 );
+      theta += TWO_PI/ n_spoke;
+      vertex(x + cos(theta) * r2, y + sin(theta) * r2);
+      theta += TWO_PI/ n_spoke;
+    }
+    endShape(CLOSE);
   }
 }
+
+//-----------------------------------------------
