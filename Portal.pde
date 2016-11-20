@@ -25,7 +25,7 @@ class Portal {
     //v.add(offset);
 
     stroke(random(20, 45), 255, random(200, 255), c);
-    strokeWeight(3);
+    strokeWeight(5);
     smooth();
     fill(0, 0, 0, c);
 
@@ -40,7 +40,7 @@ class Portal {
     if (mousePressed) {
 
 
-     
+
 
       pushMatrix();
       translate(width/2, height/2);
@@ -83,23 +83,48 @@ class Portal {
 
 
       pushMatrix();
-      star(123, 60, 100);
+      translate(width*0.5, height/2);
+      rotate(frameCount / 200.0);
+      //star(123, 60, 100);
+      star(0, 0, 123, 60, 3);
       popMatrix();
 
       pushMatrix();
-      star(-123, -60, 100);
+      translate(width*0.5, height/2);
+      rotate(frameCount / 200.0);
+      //star(-123, -60, 100);
+      star(0, 0, -123, -60, 3);
       popMatrix();
     }
   }
-
+  
+  /*
   void star(float r1, float r2, float theta )
-  {
+   {
+   beginShape();
+   for (int i = 0; i<n_spoke; i++) {
+   vertex(x + cos(theta) * r1, y + sin(theta) * r1 );
+   theta += TWO_PI/ n_spoke;
+   vertex(x + cos(theta) * r2, y + sin(theta) * r2);
+   theta += TWO_PI/ n_spoke;
+   }
+   endShape(CLOSE);
+   }
+   
+   */
+   
+  void star(float x, float y, float radius1, float radius2, int npoints) {
+    float angle = TWO_PI / npoints;
+    float halfAngle = angle/2.0;
+    noFill();
     beginShape();
-    for (int i = 0; i<n_spoke; i++) {
-      vertex(x + cos(theta) * r1, y + sin(theta) * r1 );
-      theta += TWO_PI/ n_spoke;
-      vertex(x + cos(theta) * r2, y + sin(theta) * r2);
-      theta += TWO_PI/ n_spoke;
+    for (float a = 0; a < TWO_PI; a += angle) {
+      float sx = x + cos(a) * radius2;
+      float sy = y + sin(a) * radius2;
+      vertex(sx, sy);
+      sx = x + cos(a+halfAngle) * radius1;
+      sy = y + sin(a+halfAngle) * radius1;
+      vertex(sx, sy);
     }
     endShape(CLOSE);
   }
