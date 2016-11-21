@@ -2,8 +2,7 @@ class Portal {
   float x, y;
   float radius;
   float r;
-  int c;
-  int n_spoke = 6;
+  float c;
   // PVector v;
 
   //Constructor
@@ -30,7 +29,7 @@ class Portal {
     fill(0, 0, 0, c);
 
     //xx
-    c = c + 2;
+    c = c + 0.5 ;
     /*if(c > 0)
      {
      c = 30;
@@ -39,16 +38,12 @@ class Portal {
 
     if (mousePressed) {
 
-
-
-
       pushMatrix();
       translate(width/2, height/2);
       rotate(r);
       // Particles rotating around this ellipse
       ellipse(0, 0, radius+20, radius+20);
-      r = r + 0.02;
-
+      r = r + 0.009;
       popMatrix();
 
       ellipse(x, y, radius, radius);
@@ -59,7 +54,7 @@ class Portal {
         return;
       }
 
-      fill(200, 80, 80);
+      fill(220, 110, 120);
       ellipse(x, y, radius+20, radius+20);
       ellipse(x, y, radius, radius);
 
@@ -68,7 +63,7 @@ class Portal {
       translate(width/2, height/2);
       rotate(r);
       rect(0, 0, radius-150, radius-150);
-      r = r + 0.02;
+      r = r + 0.009;
       popMatrix();
 
       pushMatrix();
@@ -76,30 +71,33 @@ class Portal {
       rectMode(CENTER);
       rotate(-r);
       rect(0, 0, radius-150, radius-150);
-      r = r + 0.02;
+      r = r + 0.009;
       popMatrix();
+
       noFill();
       ellipse(x, y, radius-200, radius-200);
 
 
       pushMatrix();
       translate(width*0.5, height/2);
-      rotate(frameCount / 200.0);
-      //star(123, 60, 100);
+      rotate(r);
+      //star(123, 60, 100, 3);
       star(0, 0, 123, 60, 3);
+      r = r + 0.009;
       popMatrix();
 
       pushMatrix();
       translate(width*0.5, height/2);
-      rotate(frameCount / 200.0);
-      //star(-123, -60, 100);
+      rotate(r);
+      //star(-123, -60, 100, 3);
       star(0, 0, -123, -60, 3);
+      r = r + 0.009;
       popMatrix();
     }
   }
-  
+
   /*
-  void star(float r1, float r2, float theta )
+  void star(float r1, float r2, float theta, int n_spoke)
    {
    beginShape();
    for (int i = 0; i<n_spoke; i++) {
@@ -112,7 +110,7 @@ class Portal {
    }
    
    */
-   
+
   void star(float x, float y, float radius1, float radius2, int npoints) {
     float angle = TWO_PI / npoints;
     float halfAngle = angle/2.0;

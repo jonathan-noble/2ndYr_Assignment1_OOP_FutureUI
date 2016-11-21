@@ -20,7 +20,7 @@ class Particles {
   }
 
   void update() {
-     angle = angle - speed;      
+     angle += p_speed;      
     p_size += p_thick;
     //If p_size gets bigger, then p_thick resets back to 0
     if (p_size > 15 || p_size <0) {

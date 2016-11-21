@@ -2,23 +2,29 @@
  
  PeasyCam cam; 
  */
-int num = 15;
-backGround[] bg = new backGround[600];
+
+import ddf.minim.*;
+
+Minim minim;
+AudioPlayer player;
+
+int num = 40;
+backGround[] bg = new backGround[800];
 //Star[] stars = new Star[500];
 Portal open_port;
 Ecolor[] ec=new Ecolor[num];
 Particles[] part = new Particles[num];
 createPortal createPort;
-Game_Of_Life[] GoL = new Game_Of_Life[10];
+GameOfLife gol;
 
-
-float speed;
 
 void setup() {
   // size(800, 600, P3D);
   size(800, 600);
   colorMode(HSB);
 
+  minim = new Minim(this);
+  player = minim.loadFile("music.mp3");
   /*
    cam = new PeasyCam(this, 500);
    cam.setMinimumDistance(50);
@@ -41,16 +47,16 @@ void setup() {
   // stars[i] = new Star(open_port);
   // }
 
-  for (int i = 0; i < GoL.length; i++) {
-    GoL[i] = new Game_Of_Life(open_port);
-  }
+  gol = new GameOfLife(open_port);
+
+  player.play();
 }
 
 
 void draw() 
 {
   background(220, 100, 120);
-  speed = map(mouseX, 0, width, 0, 20);
+
 
   open_port.display();
   createPort.display();
@@ -60,15 +66,15 @@ void draw()
     backg.update();
     backg.display();
   }
-  
-   for (int i=0; i<num; i++) {
+
+  for (int i=0; i<num; i++) {
     part[i].update();
     part[i].display();
     ec[i].display();
   }
 
 
-  if (keyPressed)
+  if (keyPressed) 
   {
 
     if (key == '1')
@@ -78,12 +84,10 @@ void draw()
       //  star.display();
       // }
     }
-    if (key == '2')
+    if (key == '4')
     {
-      for (Game_Of_Life gol : GoL) {
-        //   gol.update();
-        //  gol.display();
-      }
+      gol.generate();
+      gol.display();
     }
   }
 }

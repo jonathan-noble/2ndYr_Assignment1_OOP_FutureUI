@@ -1,180 +1,81 @@
-/*
-/*if the cell is alive
- if < 2 neighbours, the cell dies
- if 2 or 3 neighbours it survives
- if > 3 neighbours, it dies due to overcrowding
- if the cell is dead
- if it has exactly 3 neighbours it comes back to life
- */
-
-class Game_Of_Life {
+class GameOfLife {
   Portal port;
-  boolean paused = false;
-  int count;
-  boolean[][] board;
-  boolean[][] next;
-  int cellWidth = 5;
-  int cellHeight = 5;
-  int boardWidth;
-  int boardHeight;
-  color c;
+  int cellWidth = 8;
+  int columns, rows;
+
+  // Game of life board
+  int[][] board;
 
 
-  Game_Of_Life(Portal port) {
+  GameOfLife(Portal port) {
+    // Initialize rows, columns and set-up arrays
+    columns = width/cellWidth;
+    rows = height/cellWidth;
+    board = new int[columns][rows];
+    //next = new int[columns][rows];
+    // Call function to fill array with random values 0 or 1
+    init();
     this.port = port;
-    boardWidth = width / cellWidth;
-    boardHeight = height / cellHeight;
-    board = new boolean[boardHeight][boardWidth];
-    next = new boolean[boardHeight][boardWidth];
-    c = color(0, 0, 0);
-    this.port = port;
-    randomise();
   }
 
-  int countNeighbours(int row, int col)
-  {
-    count = 0;
-
-    // Put your code in here...
-    // Top left
-    if ((row > 0) && (col > 0) && (board[row - 1][col -1]))
-    {
-      count ++;
-    }
-    // Top
-    if ((row > 0) && board[row -1][col])
-    {
-      count ++;
-    }
-    // Top right
-    if ((row > 0) && (col < (boardWidth - 1)) && (board[row -1][col + 1]))
-    {
-      count ++;
-    }
-    // Left
-    if ((col > 0) && (board[row][col -1]))
-    {
-      count ++;
-    }
-    // Right
-    if ((col < (boardWidth -1)) && board[row][col + 1])
-    {
-      count ++;
-    }
-    // Bottom left
-    if ((col > 0) && (row < (boardHeight - 1)) 
-      && board[row + 1][col - 1])
-    {
-      count ++;
-    }
-    // Bottom
-    if ((row < (boardHeight -1)) && (board[row + 1][col]))
-    {
-      count ++;
-    }
-    // Bottom right
-    if ((col < (boardWidth - 1)) && (row < (boardHeight - 1)) 
-      && board[row + 1][col + 1])
-    {
-      count ++;
-    }
-    return count;
-  }
-
-
-
-  void randomise()
-  {
-    for (int row = 0; row < boardHeight; row ++)
-    {
-      for (int col = 0; col < boardWidth; col ++)
-      {
-        float f = random(0, 1);
-        if (f > 0.5f)
-        {
-          board[row][col] = true;
-        }
+  void init() {
+    for (int i =1;i < columns-1;i++) {
+      for (int j =1;j < rows-1;j++) {
+        board[i][j] = int(random(2));
       }
     }
   }
 
-  void keyPressed()
-  {
-    paused = ! paused;
-  }
+  // The process of creating the new generation
+  void generate() {
 
-  void update()
-  {
+    int[][] next = new int[columns][rows];
 
-    if (! paused)
-    {
-      for (int row = 0; row < boardHeight; row ++)
-      {
-        for (int col = 0; col < boardWidth; col ++)
-        {
-          int count = countNeighbours(row, col);
-          next[row][col] = false;
-          if (board[row][col])
-          {
-            if (count<2)
-            {
-              next[row][col] = false;
-            } else if ((count == 2) || (count == 3))
-            {
-              next[row][col] = true;
-            } else if (count > 3)
-            {
-              next[row][col] = false;
-            }
-          } else
-          {
-            if (count == 3)
-            {
-              next[row][col] = true;
-            }
+    // Loop through every spot in our 2D array and check spots neighbors
+    for (int x = 0; x < columns; x++) {
+      for (int y = 0; y < rows; y++) {
+
+        // Add up all the states in a 3x3 surrounding grid
+        int neighbors = 0;
+        for (int i = -1; i <= 1; i++) {
+          for (int j = -1; j <= 1; j++) {
+            neighbors += board[(x+i+columns)%columns][(y+j+rows)%rows];
           }
         }
+
+        // A little trick to subtract the current cell's state since
+        // we added it in the above loop
+        neighbors -= board[x][y];
+
+        // Rules of Life
+        if      ((board[x][y] == 1) && (neighbors <  2)) next[x][y] = 0;           // Loneliness
+        else if ((board[x][y] == 1) && (neighbors >  3)) next[x][y] = 0;           // Overpopulation
+        else if ((board[x][y] == 0) && (neighbors == 3)) next[x][y] = 1;           // Reproduction
+        else                                            next[x][y] = board[x][y];  // Stasis
       }
-      boolean[][] temp = board;
-      board = next;
-      next = temp;
     }
+
+    // Next is now our board
+    board = next;
   }
 
-  void display()
-  {
-    background(c);
-
-
-
-    update();
-    for (int row = 0; row < boardHeight; row ++)
-    {
-      for (int col = 0; col < boardWidth; col ++)
+  void display() {
+      
+    
+     if (this.port.radius /2 < dist(0, 0, columns, rows) )
       {
-        int x = cellWidth * col;
-        int y = cellHeight * row;
-
-        // if (this is too far from the center)
-        if (mousePressed)
-        {
-          if (this.port.radius / 2.3 < dist(0, 0, x, y) )
-          {
-            return;
-          }
-
-          if (board[row][col])
-          {
-
-            fill(0, 255, 0);       
-            // color lerpedColor = lerpColor(backColor, filledColor, 0);      
-            // fill(lerpColor);
-          } else
-          {
-            fill(0);
-          }
-          rect(x, y, cellWidth, cellHeight);
-        }
+        return;
+      }
+      translate(0, 0);
+    for ( int i = 0; i < columns;i++) {
+      for ( int j = 0; j < rows;j++) {
+        if ((board[i][j] == 1)) 
+        fill(0);
+        else 
+    
+        fill(255); 
+        stroke(0);
+        rect(i*cellWidth, j*cellWidth, cellWidth, cellWidth);
       }
     }
   }
