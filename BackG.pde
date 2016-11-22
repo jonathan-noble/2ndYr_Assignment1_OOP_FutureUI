@@ -1,21 +1,26 @@
-//**
 class backGround {
   // PVector v1;
   Portal port;
   float x;
   float y;
   float z;
-
+  float speed;
   float pz;
 
-  backGround(Portal port) {
-    // v1 = new PVector(40,20);
-    x = random(-width/2, width/2);
-    y = random(-height/2, height/2);
+
+  backGround(Portal port, float _x, float _y) {
+    x = _x;
+    y = _y;
     z = random(width/2);
     pz = z;
+    speed = 0;
     this.port = port;
   }
+
+  // z = _z;
+  // speed = _speed;
+  // pz = _pz;
+
 
   void update() {
     z = z - speed;
@@ -29,7 +34,7 @@ class backGround {
 
   void display()
   {
-
+    speed = map(mouseX, 0, width, 0, 20);
 
     float sx = map(x / z, 0, 1, 0, width/2);
     float sy = map(y / z, 0, 1, 0, height/2);
@@ -43,12 +48,10 @@ class backGround {
       }
     }
 
-
     float r = map(z, 0, width/2, 16, 0);
     fill(random(mouseX/6, 255), 255, 255);
     noStroke();
     ellipse(sx, sy, r, r);
-
 
 
     float px = map(x / pz, 0, 1, 0, width/2);
@@ -59,8 +62,24 @@ class backGround {
       pz = z;
 
       stroke(random(mouseX/6, 255), 255, 255);
-
       line(px, py, sx, sy);
     }
   }
 }
+/*
+class Bunny extends backGround {
+  // PImage bunny;
+
+  Bunny(float _x, float _y) {
+    super(_x, _y);
+    //bunny = loadImage("bunny2.png");
+  }
+
+  void update() {
+  }
+
+  void display() {
+    //image(bunny, _x, _y);
+  }
+}
+*/
