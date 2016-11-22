@@ -29,7 +29,7 @@ class Portal {
     fill(0, 0, 0, c);
 
     //xx
-    c = c + 0.5 ;
+    c = c + 0.8 ;
     /*if(c > 0)
      {
      c = 30;
@@ -54,7 +54,7 @@ class Portal {
         return;
       }
 
-      fill(220, 110, 120);
+      fill(random(mouseX/3, 220), 50, random(240,255));
       ellipse(x, y, radius+20, radius+20);
       ellipse(x, y, radius, radius);
 
@@ -112,16 +112,16 @@ class Portal {
    */
 
   void star(float x, float y, float radius1, float radius2, int npoints) {
-    float angle = TWO_PI / npoints;
-    float halfAngle = angle/2.0;
+    float theta = TWO_PI / npoints;
+    float halfTheta = theta/2.0;
     noFill();
     beginShape();
-    for (float a = 0; a < TWO_PI; a += angle) {
-      float sx = x + cos(a) * radius2;
-      float sy = y + sin(a) * radius2;
+    for (float i = 0; i < TWO_PI; i += theta) {
+      float sx = x + cos(i) * radius2;
+      float sy = y + sin(i) * radius2;
       vertex(sx, sy);
-      sx = x + cos(a+halfAngle) * radius1;
-      sy = y + sin(a+halfAngle) * radius1;
+      sx = x + cos(i+halfTheta) * radius1;
+      sy = y + sin(i+halfTheta) * radius1;
       vertex(sx, sy);
     }
     endShape(CLOSE);

@@ -64,7 +64,7 @@ void setup() {
 
 void draw() 
 {
-  background(220, 100, 120);
+  background(random(mouseX/6, 2 * this.open_port.radius % 255) , 200, 50);
 
   open_port.display();
   createPort.display();
@@ -81,14 +81,15 @@ void draw()
     bun.display();
   }
   */
+
+
   
   for (int i=0; i<num; i++) {
     part[i].update();
     part[i].display();
     ec[i].display();
   }
-
-
+    
   if (keyPressed) 
   {
 
