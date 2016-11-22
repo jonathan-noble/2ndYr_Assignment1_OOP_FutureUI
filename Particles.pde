@@ -24,7 +24,7 @@ class Particles {
     p_size += p_thick;
     //If p_size gets bigger, then p_thick resets back to 0
     if (p_size > 15 || p_size <0) {
-      p_thick = 0;
+      p_thick = -p_thick;
     }
   }
 
@@ -35,13 +35,10 @@ class Particles {
     rotate(radians(angle));
     ellipse(X, Y, p_size, p_size);
     
+    //line on PVector that sparks out on each of the particles
+    
   }
-
-  void fadeToWhite() {
-    fill(255, 5);
-    noStroke();
-    rect(0, 0, width, height);
-  }
+  
 }
 
 

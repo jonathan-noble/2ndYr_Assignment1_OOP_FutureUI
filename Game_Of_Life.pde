@@ -66,7 +66,8 @@ class GameOfLife {
       {
         return;
       }
-      translate(0, 0);
+      
+
     for ( int i = 0; i < columns;i++) {
       for ( int j = 0; j < rows;j++) {
         if ((board[i][j] == 1)) 

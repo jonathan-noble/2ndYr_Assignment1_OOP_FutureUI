@@ -34,7 +34,7 @@ class backGround {
 
   void display()
   {
-    speed = map(mouseX, 0, width, 0, 20);
+   speed = map(mouseX, 0, width, 0, 20);
 
     float sx = map(x / z, 0, 1, 0, width/2);
     float sy = map(y / z, 0, 1, 0, height/2);
