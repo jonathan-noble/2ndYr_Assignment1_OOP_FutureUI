@@ -1,6 +1,6 @@
 class GameOfLife {
   Portal port;
-  int cellWidth = 10;
+  int cellWidth = 9;
   int columns, rows;
 
   // Game of life board
@@ -72,6 +72,7 @@ class GameOfLife {
           fill(0);
         else 
         translate(-width/2, -height/2);
+        //translate(mouseX/2, mouseY/2);
         fill(255); 
         stroke(0);
         rect(i*cellWidth, j*cellWidth, cellWidth, cellWidth);
