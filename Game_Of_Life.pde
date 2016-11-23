@@ -1,6 +1,6 @@
 class GameOfLife {
   Portal port;
-  int cellWidth = 8;
+  int cellWidth = 10;
   int columns, rows;
 
   // Game of life board
@@ -9,8 +9,8 @@ class GameOfLife {
 
   GameOfLife(Portal port) {
     // Initialize rows, columns and set-up arrays
-    columns = width/cellWidth;
-    rows = height/cellWidth;
+    columns = width/ cellWidth;
+    rows = height/ cellWidth;
     board = new int[columns][rows];
     //next = new int[columns][rows];
     // Call function to fill array with random values 0 or 1
@@ -19,8 +19,8 @@ class GameOfLife {
   }
 
   void init() {
-    for (int i =1;i < columns-1;i++) {
-      for (int j =1;j < rows-1;j++) {
+    for (int i =1; i < columns-1; i++) {
+      for (int j =1; j < rows-1; j++) {
         board[i][j] = int(random(2));
       }
     }
@@ -60,24 +60,24 @@ class GameOfLife {
   }
 
   void display() {
-      
-    
-     if (this.port.radius /2 < dist(0, 0, columns, rows) )
-      {
-        return;
-      }
-      
 
-    for ( int i = 0; i < columns;i++) {
-      for ( int j = 0; j < rows;j++) {
+    for ( int i = 0; i < columns; i++) {
+      for ( int j = 0; j < rows; j++) {
+
+        if (this.port.radius /2.1 < dist(width/2, height/2, i*cellWidth, j*cellWidth)) {
+          continue;
+        }
+        pushMatrix();
         if ((board[i][j] == 1)) 
-        fill(0);
+          fill(0);
         else 
-    
+        translate(-width/2, -height/2);
         fill(255); 
         stroke(0);
         rect(i*cellWidth, j*cellWidth, cellWidth, cellWidth);
+        popMatrix();
       }
+      
     }
   }
 }

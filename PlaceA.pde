@@ -29,6 +29,7 @@ class SolarSystem {
       float r = radius/(level*2);
       float d = random(50, 150);
       float o = random(-0.1, 0.1);
+      //**
       planets[i] = new SolarSystem(r, d/level, o);
       if (level < 3) {
         int num = 3;

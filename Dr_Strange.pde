@@ -9,9 +9,8 @@
  AudioPlayer player;
  */
 
-
-backGround[] bg = new backGround[400];
-//Bunny[] bunnies = new Bunny[50];
+BackGround[] bg = new BackGround[400];
+Bunny[] bunnies = new Bunny[3];
 //Star[] stars = new Star[500];
 Portal open_port;
 
@@ -23,12 +22,12 @@ GameOfLife gol;
 SolarSystem sun;
 
 
+
 void setup() {
   // size(800, 600, P3D);
   size(800, 600);
   colorMode(HSB);
   //imageMode(CENTER);
-  
   /*
   minim = new Minim(this);
    player = minim.loadFile("music.mp3");
@@ -49,14 +48,14 @@ void setup() {
   }
 
   for (int i = 0; i < bg.length; i++) {
-    bg[i] = new backGround(open_port, random(-width/2, width/2), random(-height/2, height/2) );
+    bg[i] = new BackGround(open_port, random(-width/2, width/2), random(-height/2, height/2) );
   }
 
-  /*
+
   for (int i = 0; i < bunnies.length; i++) {
-   bunnies[i] = new Bunny(random(1, 1), random(-height/2, height/2) );
-   }
-   */
+    bunnies[i] = new Bunny(open_port, random(1, 1), random(-height/2, height/2) );
+  }
+
 
   // for (int i = 0; i < stars.length; i++) {
   // stars[i] = new Star(open_port);
@@ -74,45 +73,47 @@ void draw()
 
   open_port.display();
   createPort.display();
-
-  translate(pmouseX/2, pmouseY/2);
-  for (backGround backg : bg) {
+  translate(width/2, height/2);      // try calling translate locally
+  for (BackGround backg : bg) {
     backg.update();
     backg.display();
   }
 
-  /*
+
   for (Bunny bun : bunnies) {
-   bun.update();
-   bun.display();
-   }
-   */
-
-
-
-  if (keyPressed) 
-  {
-
-    if (key == '1')
-    {
-      sun.display();
-      sun.orbit();
-      //  for (Star star : stars) {
-      //   star.update();
-      //  star.display();
-      // }
-    }
-    if (key == '4')
-    {
-      gol.generate();
-      gol.display();
-    }
+    bun.update();
+    bun.display();
   }
 
-  for (int i=0; i<num; i++) {
-    part[i].update();
-    part[i].display();
-    ec[i].display();
+
+  if (mousePressed == true)
+  {
+
+    if (keyPressed) 
+    {
+
+      if (key == '1')
+      {
+        sun.display();
+        sun.orbit();
+
+        /*  for (int i = 0; i<numbers.length; i++) {
+         image(numbers[i], width/4, height);
+         }
+         */
+      }
+      if (key == '4')
+      {
+        gol.generate();
+        gol.display();
+      }
+    }
+
+    for (int i=0; i<num; i++) {
+      part[i].update();
+      part[i].display();
+      ec[i].display();
+    }
   }
 }
 
@@ -122,12 +123,9 @@ PImage numbers[] = new PImage[4];
 PImage n1, n2, n3, n4;
 
 void showNumbers() {
-  
+
   for (int i = 0; i < numbers.length; i++)
   {
     numbers[i] = loadImage(i + ".png");
   }
-  
-  
 }
-  

@@ -1,4 +1,4 @@
-class backGround {
+class BackGround {
   // PVector v1;
   Portal port;
   float x;
@@ -7,8 +7,7 @@ class backGround {
   float speed;
   float pz;
 
-
-  backGround(Portal port, float _x, float _y) {
+  BackGround(Portal port, float _x, float _y) {
     x = _x;
     y = _y;
     z = random(width/2);
@@ -34,10 +33,11 @@ class backGround {
 
   void display()
   {
-   speed = map(mouseX, 0, width, 0, 20);
-
+    speed = map(mouseX, 0, width, 0, 20);
+      
     float sx = map(x / z, 0, 1, 0, width/2);
     float sy = map(y / z, 0, 1, 0, height/2);
+    
 
     if (mousePressed == true)
     {
@@ -66,20 +66,19 @@ class backGround {
     }
   }
 }
-/*
-class Bunny extends backGround {
-  // PImage bunny;
 
-  Bunny(float _x, float _y) {
-    super(_x, _y);
-    //bunny = loadImage("bunny2.png");
+//TRY CALLING SX AND SY INSTEAD OF X AND Y
+class Bunny extends BackGround {
+  PImage bunny;
+
+  Bunny(Portal port, float _x, float _y) {
+    super(port, _x, _y);
+    bunny = loadImage("bunny2.png");
   }
 
-  void update() {
-  }
+
 
   void display() {
-    //image(bunny, _x, _y);
+   // image(bunny, x, y);
   }
 }
-*/
