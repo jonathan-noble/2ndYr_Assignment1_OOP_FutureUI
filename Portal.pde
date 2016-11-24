@@ -19,7 +19,6 @@ class Portal {
 
   void display()
   {
-    float hu = 0;
     // PVector offset = PVector.random3D();
     //v.add(offset);
 

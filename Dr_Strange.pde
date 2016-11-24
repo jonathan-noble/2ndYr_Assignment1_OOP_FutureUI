@@ -4,7 +4,9 @@
  PeasyCam cam; 
  Minim minim;
  AudioPlayer player;
- */
+*/
+
+// I am declaring everything in order of sequence and priority
 
 //Declaring Starfield background and the portal
 BackGround[] bg = new BackGround[400];
@@ -19,7 +21,7 @@ PImage numbers[] = new PImage[4];
 
 //Declaring the particles
 int num = 30;
-Ecolor[] ec=new Ecolor[num];
+Ecolor[] ec =new Ecolor[num];
 Particles[] part = new Particles[num];
 
 //Declaring the places inside the Portal
@@ -111,7 +113,7 @@ void draw()
   }
 
 
-  if (mousePressed == true)
+  if (mousePressed == true) // if all nodes are Connected == true
   {
 
     if (keyPressed) 

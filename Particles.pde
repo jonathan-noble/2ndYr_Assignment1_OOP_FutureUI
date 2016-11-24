@@ -4,8 +4,6 @@ class Particles {
   float p_speed;  //speed of the particle
   float p_size;  //size of the particle
   float p_thick;  //thickness of the particles
-  float H, S, B;
-
 
   Particles() {
     X = width/4;
@@ -14,24 +12,20 @@ class Particles {
     p_speed = random(0.1, 0.2);
     p_size = random(10);
     p_thick = random(0.1, 1.5);
-    H = random(20, 40);
-    S  = 255;
-    B = random(155, 255);
   }
 
   void update() {
      angle += p_speed;      
     p_size += p_thick;
     //If p_size gets bigger, then p_thick resets back to 0
-    if (p_size > 15 || p_size <0) {
+   if (p_size > 30 || p_size <0) {
       p_thick = -p_thick;
     }
+    
   }
 
 
   void display() {
-    
-    //fill(H, S, B);
     rotate(radians(angle));
     ellipse(X, Y, p_size, p_size);
     
