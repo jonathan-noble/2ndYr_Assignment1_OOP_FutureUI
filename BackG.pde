@@ -7,10 +7,10 @@ class BackGround {
   float speed;
   float pz;
 
-  BackGround(Portal port, float _x, float _y) {
+  BackGround(Portal port, float _x, float _y, float _z) {
     x = _x;
     y = _y;
-    z = random(width/2);
+    z = _z;
     pz = z;
     speed = 0;
     this.port = port;
@@ -67,18 +67,23 @@ class BackGround {
   }
 }
 
-//TRY CALLING SX AND SY INSTEAD OF X AND Y
+//TRY CALLING SX AND SY INSTEAD OF X AND Y ||| DECLARE NEW SX AND SY 
 class Bunny extends BackGround {
   PImage bunny;
 
-  Bunny(Portal port, float _x, float _y) {
-    super(port, _x, _y);
+  Bunny(Portal port, float _x, float _y, float _z) {
+    super(port, _x, _y, _z);
     bunny = loadImage("bunny2.png");
   }
 
+void update()
+{
+  super.update();
+}
 
 
   void display() {
-   // image(bunny, x, y);
+    super.display();
+   // image(bunny, x, y, 50, 50);
   }
 }

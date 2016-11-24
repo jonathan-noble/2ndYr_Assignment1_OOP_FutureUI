@@ -11,7 +11,8 @@ BackGround[] bg = new BackGround[400];
 Bunny[] bunnies = new Bunny[3];
 Portal open_port;
 createPortal createPort;
-Nodes[] nodes = new Nodes[50];
+int randNodes = int(random(4, 7));
+Nodes[] nodes = new Nodes[randNodes];
 
 //Declaring the images of the numbers 
 PImage numbers[] = new PImage[4];
@@ -60,16 +61,18 @@ void setup() {
 
   //Initializing the starfield background
   for (int i = 0; i < bg.length; i++) {
-    bg[i] = new BackGround(open_port, random(-width/2, width/2), random(-height/2, height/2) );
+    bg[i] = new BackGround(open_port, 
+    random(-width/2, width/2), random(-height/2, height/2), random(width/2));
   }
 
   //Initializing the bunnies flying around the starfield
   for (int i = 0; i < bunnies.length; i++) {
-    bunnies[i] = new Bunny(open_port, random(1, 1), random(-height/2, height/2) );
+    bunnies[i] = new Bunny(open_port, 
+    random(1, 1), random(-height/2, height/2), random(width/2) );
   }
-  
+
   //Initializing the diamond nodes
-   for (int i = 0; i < nodes.length; i++)
+  for (int i = 0; i < nodes.length; i++)
   {
     nodes[i] = new Nodes();
   } 
@@ -88,8 +91,15 @@ void draw()
 
   open_port.display();
   createPort.display();
+  
+   for (int i = 0; i < nodes.length; i++)
+  {
+    nodes[i].update();
+    nodes[i].display();
+  }
+  
 
-  translate(width/2, height/2); // try calling translate locally
+ translate(width/2, height/2); // try calling translate locally
   for (BackGround backg : bg) {
     backg.update();
     backg.display();
@@ -98,18 +108,13 @@ void draw()
     bun.update();
     bun.display();
   }
-  
-   for (int i = 0; i < nodes.length; i++)
-  {
-    nodes[i].display();
-  }
+
 
   if (mousePressed == true)
   {
 
     if (keyPressed) 
     {
-
       if (key == '1')
       {
         sun.display();
@@ -142,21 +147,20 @@ void draw()
       part[i].update();
       part[i].display();
       ec[i].display();
-    
-  }
-} // end mousePressed = true
+    }
+  } // end mousePressed = true
 
-/*      ONLY USE THIS ONCE YOU'RE FINISHED WITH NODES 
- THE BACKGROUND ROTATES AROUND THE PORTAL
- for (BackGround backg : bg) {
- backg.update();
- backg.display();
- }
- for (Bunny bun : bunnies) {
- bun.update();
- bun.display();
- }
- */
+  /*      ONLY USE THIS ONCE YOU'RE FINISHED WITH NODES 
+   THE BACKGROUND ROTATES AROUND THE PORTAL
+   for (BackGround backg : bg) {
+   backg.update();
+   backg.display();
+   }
+   for (Bunny bun : bunnies) {
+   bun.update();
+   bun.display();
+   }
+   */
 } // end draw function
 
 void showNumbers() {
