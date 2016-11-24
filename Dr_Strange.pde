@@ -11,6 +11,7 @@ BackGround[] bg = new BackGround[400];
 Bunny[] bunnies = new Bunny[3];
 Portal open_port;
 createPortal createPort;
+Nodes[] nodes = new Nodes[50];
 
 //Declaring the images of the numbers 
 PImage numbers[] = new PImage[4];
@@ -66,6 +67,12 @@ void setup() {
   for (int i = 0; i < bunnies.length; i++) {
     bunnies[i] = new Bunny(open_port, random(1, 1), random(-height/2, height/2) );
   }
+  
+  //Initializing the diamond nodes
+   for (int i = 0; i < nodes.length; i++)
+  {
+    nodes[i] = new Nodes();
+  } 
 
 
   //Places inside the Portal initialized here
@@ -90,6 +97,11 @@ void draw()
   for (Bunny bun : bunnies) {
     bun.update();
     bun.display();
+  }
+  
+   for (int i = 0; i < nodes.length; i++)
+  {
+    nodes[i].display();
   }
 
   if (mousePressed == true)
@@ -130,35 +142,35 @@ void draw()
       part[i].update();
       part[i].display();
       ec[i].display();
-    }
-  } // end mousePressed = true
+    
+  }
+} // end mousePressed = true
 
-  /*      ONLY USE THIS ONCE YOU'RE FINISHED WITH NODES 
-   THE BACKGROUND ROTATES AROUND THE PORTAL
-   for (BackGround backg : bg) {
-   backg.update();
-   backg.display();
-   }
-   for (Bunny bun : bunnies) {
-   bun.update();
-   bun.display();
-   }
-   */
+/*      ONLY USE THIS ONCE YOU'RE FINISHED WITH NODES 
+ THE BACKGROUND ROTATES AROUND THE PORTAL
+ for (BackGround backg : bg) {
+ backg.update();
+ backg.display();
+ }
+ for (Bunny bun : bunnies) {
+ bun.update();
+ bun.display();
+ }
+ */
 } // end draw function
 
 void showNumbers() {
   float imgPosX = -width/2.05;
   float imgPosY = -height/2.2;
   float imgSizeX = 175;
-  float imgSizeY = 400;
-  
+  float imgSizeY = 300;
+
   //Lerp the image's color to fade from solid to transparent
-  
+
   if (keyPressed)
   { 
     if (key == '1')
-      
-      image(numbers[0], imgPosX,imgPosY, imgSizeX, imgSizeY);
+      image(numbers[0], imgPosX, imgPosY, imgSizeX, imgSizeY);
 
     if (key == '2')
       image(numbers[1], imgPosX, imgPosY, imgSizeX, imgSizeY);
@@ -167,6 +179,6 @@ void showNumbers() {
       image(numbers[2], imgPosX, imgPosY, imgSizeX, imgSizeY);
 
     if (key == '4')
-     image(numbers[3], imgPosX, imgPosY, imgSizeX, imgSizeY);
+      image(numbers[3], imgPosX, imgPosY, imgSizeX, imgSizeY);
   }
 } // end showNumbers function
