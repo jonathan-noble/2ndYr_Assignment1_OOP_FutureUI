@@ -1,5 +1,6 @@
 class BackGround {
-  // PVector v1;
+  // Try using PVectors
+  
   Portal port;
   float x;
   float y;

@@ -62,19 +62,19 @@ void setup() {
   //Initializing the starfield background
   for (int i = 0; i < bg.length; i++) {
     bg[i] = new BackGround(open_port, 
-    random(-width/2, width/2), random(-height/2, height/2), random(width/2));
+      random(-width/2, width/2), random(-height/2, height/2), random(width/2));
   }
 
   //Initializing the bunnies flying around the starfield
   for (int i = 0; i < bunnies.length; i++) {
     bunnies[i] = new Bunny(open_port, 
-    random(1, 1), random(-height/2, height/2), random(width/2) );
+      random(1, 1), random(-height/2, height/2), random(width/2) );
   }
 
   //Initializing the diamond nodes
   for (int i = 0; i < nodes.length; i++)
   {
-    nodes[i] = new Nodes();
+    nodes[i] = new Nodes();//open_port);
   } 
 
 
@@ -89,17 +89,18 @@ void draw()
 {
   background(random(mouseX/6, 2 * this.open_port.radius % 255), 200, 50);
 
-  open_port.display();
-  createPort.display();
-  
-   for (int i = 0; i < nodes.length; i++)
+  for (int i = 0; i < nodes.length; i++)
   {
     nodes[i].update();
     nodes[i].display();
   }
   
 
- translate(width/2, height/2); // try calling translate locally
+  open_port.display();
+  createPort.display();
+
+
+  translate(width/2, height/2); // try calling translate locally
   for (BackGround backg : bg) {
     backg.update();
     backg.display();
