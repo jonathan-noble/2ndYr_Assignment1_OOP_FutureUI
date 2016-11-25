@@ -26,7 +26,6 @@ class Portal {
     strokeWeight(5);
     smooth();
     fill(0, 0, 0, c);
-
     //xx
     c = c + 0.8 ;
     /*if(c > 0)
@@ -34,7 +33,8 @@ class Portal {
      c = 30;
      } */
 
-
+    
+    
     if (mousePressed) {
 
       pushMatrix();
@@ -45,6 +45,7 @@ class Portal {
       r = r + 0.009;
       popMatrix();
 
+
       ellipse(x, y, radius, radius);
 
 
@@ -52,8 +53,10 @@ class Portal {
       {
         return;
       }
+      
+    //  r = map(mouseX, mouseY, width, 0, 20);
 
-      fill(random(mouseX/3, 220), 50, random(240,255));
+      fill(random(mouseX/3, 220), 50, random(240, 255));
       ellipse(x, y, radius+20, radius+20);
       ellipse(x, y, radius, radius);
 
@@ -95,21 +98,6 @@ class Portal {
     }
   }
 
-  /*
-  void star(float r1, float r2, float theta, int n_spoke)
-   {
-   beginShape();
-   for (int i = 0; i<n_spoke; i++) {
-   vertex(x + cos(theta) * r1, y + sin(theta) * r1 );
-   theta += TWO_PI/ n_spoke;
-   vertex(x + cos(theta) * r2, y + sin(theta) * r2);
-   theta += TWO_PI/ n_spoke;
-   }
-   endShape(CLOSE);
-   }
-   
-   */
-
   void star(float x, float y, float radius1, float radius2, int npoints) {
     float theta = TWO_PI / npoints;
     float halfTheta = theta/2.0;
@@ -127,4 +115,8 @@ class Portal {
   }
 }
 
-//-----------------------------------------------
+/*
+  void offset(float x, float y, Array
+ }
+ 
+ */
