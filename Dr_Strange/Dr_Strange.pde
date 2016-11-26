@@ -15,7 +15,7 @@ BG_Objects[] bgObjects = new BG_Objects[1];
 //Declaring the Portal and the nodes
 Portal open_port;
 createPortal createPort;
-Nodes[] nodes = new Nodes[5];
+ArrayList<Nodes> nodes = new ArrayList<Nodes>();
 
 //Declaring the images of the numbers 
 PImage numbers[] = new PImage[4];
@@ -47,10 +47,13 @@ void setup() {
   open_port = new Portal();
   createPort = new createPortal();
 
-  //Initializing the diamond nodes
-  for (int i = 0; i < nodes.length; i++)
+
+  //Initializing the diamond nodes and the table
+  Table table = loadTable("skills.csv", "header");
+  for (TableRow row : table.rows())
   {
-    nodes[i] = new Nodes();//open_port);
+    Nodes node = new Nodes(row);//open_port);
+    nodes.add(node);
   } 
 
 
@@ -82,12 +85,22 @@ void setup() {
   sun = new SolarSystem(50, 0, 0);
   sun.spawnMoons(1, 1);
   gol = new GameOfLife(open_port);
+
+
+  //Display the skills unlocked
+  for (Nodes node : nodes)
+  {
+    println(node);
+  }
 }
 
 
 void draw() 
 {
   background(random(mouseX/6, 2 * this.open_port.radius % 255), 200, 50);
+
+  selectNodes();
+  connectNodes();
 
   for (Nodes node : nodes) {
     node.update();
@@ -157,6 +170,49 @@ void draw()
    }
    */
 } // end draw function
+
+int selected1 = 0;
+int selected2 = 0;
+
+void selectNodes() {
+  if (mousePressed == true) {
+    for (int i = 0; i < nodes.size(); i++) 
+    {
+      Nodes node = nodes.get(i);
+
+      if (dist(mouseX, mouseY, node.locNodes.x, node.locNodes.y) < node.radius1 / 3)
+      {
+        if (selected1 == 0)
+        {
+          selected1 = i;
+        } else if (selected2 == 0)
+        {
+          selected2 = i;
+        } else
+        {
+          selected1 = i;
+          selected2 = 0;
+        }
+      }
+    }
+  }
+}
+
+void connectNodes() {
+  if (selected1 != 0 && selected2 == 0)
+  {
+    Nodes node1 = nodes.get(selected1);
+    stroke(255, 255, 0);
+    line(node1.locNodes.x, node1.locNodes.y, mouseX, mouseY);
+  } else if (selected1 != 0 && selected2 != 0)
+  {
+    Nodes node1 = nodes.get(selected1);
+    Nodes node2 = nodes.get(selected2);
+    stroke(255, 255, 0);
+    line(node2.locNodes.x, node2.locNodes.y, mouseX, mouseY);
+  }
+}
+
 
 void showNumbers() {
   float imgPosX = -width/2.05;

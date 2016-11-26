@@ -45,17 +45,3 @@ class Particles {
     //line on PVector that sparks out on each of the particles
   }
 }
-
-
-class Ecolor {
-  float R, G, B;
-  Ecolor(float nR, float nG, float nB) {
-    R=nR;
-    G=nG;
-    B=nB;
-  }
-
-  void display() {
-    fill(R, G, B);
-  }
-}
