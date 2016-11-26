@@ -21,9 +21,7 @@ Nodes[] nodes = new Nodes[5];
 PImage numbers[] = new PImage[4];
 
 //Declaring the particles
-int num = 30;
-Ecolor[] ec =new Ecolor[num];
-Particles[] part = new Particles[num];
+Particles[] part = new Particles[30];
 
 //Declaring the places inside the Portal
 SolarSystem sun;
@@ -32,7 +30,7 @@ GameOfLife gol;
 
 void setup() {
   // size(800, 600, P3D);
-  size(1000, 700);
+  size(1200, 700);
   colorMode(HSB);
   /*
   minim = new Minim(this);
@@ -63,9 +61,8 @@ void setup() {
   }
 
   //Initializing the Particles and it's color around the portal
-  for (int i=0; i<num; i++) {
+  for (int i=0; i<part.length; i++) {
     part[i]=new Particles();
-    ec[i]=new Ecolor(random(25, 40), 255, (255));
   }
 
   //Initializing the starfield background
@@ -142,10 +139,9 @@ void draw()
       }
     }
 
-    for (int i=0; i<num; i++) {
-      part[i].update();
-      part[i].display();
-      ec[i].display();
+    for (Particles par : part) {
+      par.update();
+      par.display();
     }
   } // end mousePressed = true
 

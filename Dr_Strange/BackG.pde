@@ -82,13 +82,16 @@ class BG_Objects extends BackGround {
   void display() { 
     super.display();
     speed = map(mouseX, 0, width, 0, 10);
-    pushMatrix();
-    translate(width/2, height/2);
     float sx = map(x / z, 0, 1, 0, width/2);
     float sy = map(y / z, 0, 1, 0, height/2);
-
-    image(bunny, sx, sy, random(55, 70), random(55, 70) );
-    image(clock, sx/3, sy/4, (pmouseX/4), (pmouseY/3) );
+    float px = map(x / pz, 0, 1, 0, width/2);
+    float py = map(y / pz, 0, 1, 0, height/2);
+    pz = z;
+   
+    pushMatrix();
+    translate(width/2, height/2);
+    image(bunny, sy - 200, sx - 100, px/4, py/2 );
+    image(clock, sx/3, sy/4, px/3, py/2); 
     popMatrix();
   }
 } // end class BG_Objects
