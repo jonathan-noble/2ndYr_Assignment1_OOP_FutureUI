@@ -1,7 +1,7 @@
 class Nodes
 {
   //Once all five nodes which surrounds the portal are all connected by
-  //pressing the buttons with CreatePortal
+  //pressing/hovering the buttons with CreatePortal
   //The portal should then open by passing down the class Portal
   PVector location; 
   PVector locNodes;

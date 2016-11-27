@@ -18,6 +18,8 @@ createPortal createPort;
 ArrayList<Nodes> nodes = new ArrayList<Nodes>();
 boolean exec = false;
 float nodeX;
+float nodeY;
+float nodeSize;
 
 //Declaring the images of the numbers 
 PImage numbers[] = new PImage[4];
@@ -52,7 +54,11 @@ void setup() {
     Nodes node = new Nodes(row);//open_port);
     nodes.add(node);
   } 
-  nodeX = this.nodes.xNodes;
+
+  //XXXX
+  nodeX = this.nodes.x;
+  nodeY = this.nodes.y;
+  nodeSize = this.nodes.radius1;
 
   //Initializing the images the of the numbers
   for (int i = 0; i < numbers.length; i++)
@@ -170,13 +176,15 @@ void draw()
 
 void connectNodes(int x, int y) {
 
-  
-  if ( overNodes(nodeX, nodeY, nodeSize) {
+  if ( overNodes(nodeX, nodeY, nodeSize)  ) {
     exec = true;
+  } else {
+    exec = false;
   }
 }
 
-boolean overNodes(int x, int y, int radius) 
+
+boolean overNodes(float x, float y, float radius) 
 {
 
   //for (int i = 0; i < nodes.size(); i++) {
@@ -184,7 +192,7 @@ boolean overNodes(int x, int y, int radius)
 
   float disX = x - mouseX;
   float disY = y - mouseY;
-  if(sqrt(sq(disX) + sq(disY)) < diameter/2 ) {
+  if (sqrt(sq(disX) + sq(disY)) < diameter/2 ) {
     return true;
   } else {
     return false;
@@ -203,15 +211,15 @@ void showNumbers() {
   if (keyPressed)
   { 
     if (key == '1')
-    image(numbers[0], imgPosX, imgPosY, imgSizeX, imgSizeY);
+      image(numbers[0], imgPosX, imgPosY, imgSizeX, imgSizeY);
 
     if (key == '2')
-    image(numbers[1], imgPosX, imgPosY, imgSizeX, imgSizeY);
+      image(numbers[1], imgPosX, imgPosY, imgSizeX, imgSizeY);
 
     if (key == '3')
-    image(numbers[2], imgPosX, imgPosY, imgSizeX, imgSizeY);
+      image(numbers[2], imgPosX, imgPosY, imgSizeX, imgSizeY);
 
     if (key == '4')
-    image(numbers[3], imgPosX, imgPosY, imgSizeX, imgSizeY);
+      image(numbers[3], imgPosX, imgPosY, imgSizeX, imgSizeY);
   }
 } // end showNumbers function
