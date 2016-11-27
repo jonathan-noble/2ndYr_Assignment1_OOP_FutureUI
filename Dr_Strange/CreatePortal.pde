@@ -41,9 +41,5 @@ class createPortal
     count = c;
   }
 
-  //xx
-  void mouseReleased()
-  {
-    clear();
-  }
+  
 }

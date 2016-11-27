@@ -16,6 +16,8 @@ BG_Objects[] bgObjects = new BG_Objects[1];
 Portal open_port;
 createPortal createPort;
 ArrayList<Nodes> nodes = new ArrayList<Nodes>();
+boolean exec = false;
+float nodeX;
 
 //Declaring the images of the numbers 
 PImage numbers[] = new PImage[4];
@@ -34,12 +36,7 @@ void setup() {
   colorMode(HSB);
   /*
   minim = new Minim(this);
-   player = minim.loadFile("music.mp3");
-   
-   cam = new PeasyCam(this, 500);
-   cam.setMinimumDistance(50);
-   cam.setMaximumDistance(500);
-   
+   player = minim.loadFile("music.mp3");   
    player.play();
    */
 
@@ -55,7 +52,7 @@ void setup() {
     Nodes node = new Nodes(row);//open_port);
     nodes.add(node);
   } 
-
+  nodeX = this.nodes.xNodes;
 
   //Initializing the images the of the numbers
   for (int i = 0; i < numbers.length; i++)
@@ -97,10 +94,9 @@ void setup() {
 
 void draw() 
 {
+  int count = 0;
   background(random(mouseX/6, 2 * this.open_port.radius % 255), 200, 50);
 
-  selectNodes();
-  connectNodes();
 
   for (Nodes node : nodes) {
     node.update();
@@ -116,11 +112,12 @@ void draw()
     bgObj.display();
   }
 
+  createPort.display();
+  connectNodes(mouseX, mouseY);
 
-  if (mousePressed == true) // if all nodes are Connected == true
+  if (exec) // if all nodes are Connected == true
   {
     open_port.display();
-    createPort.display();
 
     translate(width/2, height/2);
     if (keyPressed) 
@@ -169,47 +166,28 @@ void draw()
    bgObj.display();
    }
    */
-} // end draw function
+}// end draw function
 
-int selected1 = 0;
-int selected2 = 0;
+void connectNodes(int x, int y) {
 
-void selectNodes() {
-  if (mousePressed == true) {
-    for (int i = 0; i < nodes.size(); i++) 
-    {
-      Nodes node = nodes.get(i);
-
-      if (dist(mouseX, mouseY, node.locNodes.x, node.locNodes.y) < node.radius1 / 3)
-      {
-        if (selected1 == 0)
-        {
-          selected1 = i;
-        } else if (selected2 == 0)
-        {
-          selected2 = i;
-        } else
-        {
-          selected1 = i;
-          selected2 = 0;
-        }
-      }
-    }
+  
+  if ( overNodes(nodeX, nodeY, nodeSize) {
+    exec = true;
   }
 }
 
-void connectNodes() {
-  if (selected1 != 0 && selected2 == 0)
-  {
-    Nodes node1 = nodes.get(selected1);
-    stroke(255, 255, 0);
-    line(node1.locNodes.x, node1.locNodes.y, mouseX, mouseY);
-  } else if (selected1 != 0 && selected2 != 0)
-  {
-    Nodes node1 = nodes.get(selected1);
-    Nodes node2 = nodes.get(selected2);
-    stroke(255, 255, 0);
-    line(node2.locNodes.x, node2.locNodes.y, mouseX, mouseY);
+boolean overNodes(int x, int y, int radius) 
+{
+
+  //for (int i = 0; i < nodes.size(); i++) {
+  //  Nodes node = nodes.get(i);
+
+  float disX = x - mouseX;
+  float disY = y - mouseY;
+  if(sqrt(sq(disX) + sq(disY)) < diameter/2 ) {
+    return true;
+  } else {
+    return false;
   }
 }
 
@@ -225,15 +203,15 @@ void showNumbers() {
   if (keyPressed)
   { 
     if (key == '1')
-      image(numbers[0], imgPosX, imgPosY, imgSizeX, imgSizeY);
+    image(numbers[0], imgPosX, imgPosY, imgSizeX, imgSizeY);
 
     if (key == '2')
-      image(numbers[1], imgPosX, imgPosY, imgSizeX, imgSizeY);
+    image(numbers[1], imgPosX, imgPosY, imgSizeX, imgSizeY);
 
     if (key == '3')
-      image(numbers[2], imgPosX, imgPosY, imgSizeX, imgSizeY);
+    image(numbers[2], imgPosX, imgPosY, imgSizeX, imgSizeY);
 
     if (key == '4')
-      image(numbers[3], imgPosX, imgPosY, imgSizeX, imgSizeY);
+    image(numbers[3], imgPosX, imgPosY, imgSizeX, imgSizeY);
   }
 } // end showNumbers function
