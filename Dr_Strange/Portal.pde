@@ -26,17 +26,10 @@ class Portal {
     strokeWeight(5);
     smooth();
     fill(0, 0, 0, c);
-    //xx
-    c = c + 0.8 ;
-    /*if(c > 0)
-     {
-     c = 30;
-     } */
+    c = c + 0.8;
 
-    
-    
     if (mousePressed) {
-
+      fill(0, 0, random(5, 10));
       pushMatrix();
       translate(width/2, height/2);
       rotate(r);
@@ -45,16 +38,14 @@ class Portal {
       r = r + 0.009;
       popMatrix();
 
-
       ellipse(x, y, radius, radius);
-
 
       if (keyPressed)
       {
         return;
       }
-      
-    //  r = map(mouseX, mouseY, width, 0, 20);
+
+      //  r = map(mouseX, mouseY, width, 0, 20);
 
       fill(random(mouseX/3, 220), 50, random(240, 255));
       ellipse(x, y, radius+20, radius+20);
@@ -98,6 +89,7 @@ class Portal {
     }
   }
 
+  //Star shapes when portal is closed
   void star(float x, float y, float radius1, float radius2, int npoints) {
     float theta = TWO_PI / npoints;
     float halfTheta = theta/2.0;

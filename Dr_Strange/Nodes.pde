@@ -14,7 +14,7 @@ class Nodes
   Nodes(TableRow row) { 
     abilityName = row.getString("Ability Name");
     location = new PVector(row.getFloat("X"), row.getFloat("Y")); 
-    locNodes = new PVector(map(location.x, 0, 1200, 0, width), 
+    locNodes = new PVector(map(location.x, 0, 1200, 0, width),   // value of location from table is being mapped to the screen's size
       map(location.y, 0, 700, 0, height));
     x = width/2;
     y = height/2;
@@ -32,8 +32,11 @@ class Nodes
     strokeWeight(5);
     smooth();
     fill(0, 0, 0, c);
+    //shade of color is being incremented
     c = c + 1;
-
+    
+    
+    // Draw a star/diamond shape as nodes
     pushMatrix();
     float theta = TWO_PI / npoints;
     float halfTheta = theta/2.0;

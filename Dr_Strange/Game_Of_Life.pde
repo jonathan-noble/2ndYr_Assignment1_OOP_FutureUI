@@ -44,7 +44,7 @@ class GameOfLife {
           }
         }
 
-        // A little trick to subtract the current cell's state since
+        // This subtracts the current cell's state since
         // we added it in the above loop
         neighbors -= board[x][y];
 

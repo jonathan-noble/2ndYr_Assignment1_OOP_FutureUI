@@ -1,5 +1,5 @@
 class BackGround {
-  // Try using PVectors
+  //Portal is being called along the other classes so when portal is called, it is not interfered
   Portal port;
   float x, y, z;
   float pz;
@@ -15,7 +15,9 @@ class BackGround {
   }
 
   void update() {
+    //the star is being decremented to move out of the screen
     z = z - speed;
+    //once z is out of the screen, the star goes back to the centre of the screen
     if (z < 1) {
       z = width/2;
       x = random(-width/2, width/2);
@@ -28,10 +30,10 @@ class BackGround {
   {
 
     speed = map(mouseX, 0, width, 0, 20);
-
+    
+    // the position of the star is made sure it's coming from the centre of the screen
     float sx = map(x / z, 0, 1, 0, width/2);
     float sy = map(y / z, 0, 1, 0, height/2);
-
 
     if (mousePressed == true)
     {
@@ -68,7 +70,9 @@ class BG_Objects extends BackGround {
   PImage clock;
   PImage car;
   PImage thor;
-
+  
+  
+  //super gets the value from the parent class
   BG_Objects(Portal port, float _x, float _y, float _z) {
     super(port, _x, _y, _z);
     bunny = loadImage("bunny2.png");
@@ -79,6 +83,7 @@ class BG_Objects extends BackGround {
 
   void update()
   {
+    //parent function is being called
     super.update();
   }
 

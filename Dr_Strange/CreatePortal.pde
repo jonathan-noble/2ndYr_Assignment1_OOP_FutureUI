@@ -1,5 +1,6 @@
 class createPortal 
 {
+  //It serves like a wizard's powerful hand to create a portal
   int[] x;
   int[] y;
   int iPos;
@@ -17,14 +18,14 @@ class createPortal
   void display()
   {
 
-    stroke(random(45), 255, 255);
-    strokeWeight(random(5, 7) );
+    stroke(random(35, 45), 255, 255);
+    strokeWeight(random(7, 10) );
     fill(25, 240, 255);
-    // Cycle between 0 and the number of elements
+
     if (mousePressed)
     {
       mouseMoved(count);
-      //**
+      //Modulo is used to multiply the incremented index position to the length of the array x
       iPos = (iPos + 1) % x.length;
       for (int i = 0; i < x.length; i++) {
         // Set the array position to read
@@ -36,10 +37,9 @@ class createPortal
   }
 
   void mouseMoved(int c) {
+    // Cycle between 0 and the number of elements
     x[iPos] = mouseX;
     y[iPos] = mouseY;
     count = c;
   }
-
-  
 }

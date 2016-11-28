@@ -5,13 +5,16 @@
  Due Date: 29/11/2016
  */
 
-/*
-import ddf.minim.*;
- Minim minim;
- AudioPlayer player;
- */
+
+//import ddf.minim.*;
+//Minim minim;
+//AudioPlayer player;
+
 
 // I am declaring everything in order of sequence and priority
+
+//Declare Opening intro
+//PImage marvel;
 
 //Declaring Starfield background and the portal
 BackGround[] bg = new BackGround[400];
@@ -22,8 +25,7 @@ Portal open_port;
 createPortal createPort;
 ArrayList<Nodes> nodes = new ArrayList<Nodes>();
 boolean exec = false;
-float nodeX;
-float nodeY;
+float nodeX, nodeY;
 float nodeSize;
 
 //Declaring the images of the numbers 
@@ -46,12 +48,15 @@ void setup() {
   size(1200, 700);
   colorMode(HSB);
 
-  /*
-  minim = new Minim(this);
-   player = minim.loadFile("music.mp3");   
-   player.play();
-   
-   */
+
+
+  //  minim = new Minim(this);
+  //  player = minim.loadFile("music.mp3");   
+  //  if keyPressed " " player.play();
+
+  //Initializing the opening intro
+  //marvel = loadImage("marvel.png");
+
   //Initializing the portal and it's magic wand
   open_port = new Portal();
   createPort = new createPortal();
@@ -63,14 +68,15 @@ void setup() {
   {
     Nodes node = new Nodes(row);//open_port);
     nodes.add(node);
+    //nodeX = nodes.locNodes.x;
+    //nodeY = nodes.locNodes.y;
+    //nodeSize = nodes.radius1;
   } 
 
-  //XXXX
-  /*  nodeX = this.nodes.x;
-   nodeY = this.nodes.y;
-   nodeSize = this.nodes.radius1;
-   
-   */
+  ////XXXX
+
+
+
   //Initializing the images the of the numbers
   for (int i = 0; i < numbers.length; i++)
   {
@@ -99,6 +105,7 @@ void setup() {
   SolarSystem sun = new SolarSystem(0, 0.01, 0, "sun.png");
   SolarSystem earth = new SolarSystem( 310, 1/2, 0.05, "earth.png");
   SolarSystem moon = new SolarSystem( 120, 200, 0.65, "moon.png");
+  //Adding the children of the ArrayList
   system.add(sun);
   sun.add(earth);
   earth.add(moon);
@@ -111,9 +118,10 @@ void setup() {
   gol = new GameOfLife(open_port);
 
 
-  //Display the skills unlocked
+  println("You have unlocked these abilities!");
+  //Display the abilities unlocked
   for (Nodes node : nodes)
-  {
+  { 
     println(node);
   }
 }
@@ -121,13 +129,14 @@ void setup() {
 
 void draw() 
 {
+  // image(marvel, width, height);
   background(random(mouseX/6, 2 * this.open_port.radius % 255), 200, 50);
   int count = 0;
   float delta = (millis() - lastTime) / 1000.0f;
 
   for (Nodes node : nodes) {
-    float x = node.location.x;
-    float y = node.location.y;
+    float x = node.locNodes.x;
+    float y = node.locNodes.y;
     node.update();
     node.display();
 
@@ -135,7 +144,7 @@ void draw()
       mouseY >= y && mouseY <= y + height/2) {
       textAlign(LEFT, CENTER);
       fill(255);
-      text(node.abilityName, x + 10, y - 2);
+      text(node.abilityName, x + 18, y - 2);
     }
   }
 
@@ -185,6 +194,7 @@ void draw()
       if (key == '4')
       {
         bud.display();
+        showNumbers();
       }
 
       if (key == '5')
@@ -196,8 +206,7 @@ void draw()
 
       if (key == '6')
       {
-        gol.generate();
-        gol.display();
+
         showNumbers();
       }
     }
@@ -219,6 +228,7 @@ void draw()
    bgObj.display();
    }
    */
+
 }// end draw function
 
 void connectNodes(int x, int y) {

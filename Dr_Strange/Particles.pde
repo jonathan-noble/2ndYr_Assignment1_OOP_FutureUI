@@ -13,7 +13,7 @@ class Particles {
     pz = z;
     angle = random(250);
     p_speed = random(0.1, 0.2);
-    p_size = random(10);
+    p_size = random(20);
     p_thick = random(0.1, 1.5);
   }
 
@@ -21,8 +21,8 @@ class Particles {
     angle += angle - p_speed; 
     z = angle;
     p_size += p_thick;
-    //If p_size gets bigger, then p_thick resets back to 0
-    if (p_size > 30 || p_size <0) {
+    //If p_size gets bigger, then p_thick resets back to 0 == animation of the particles
+    if (p_size > 15 || p_size < 0) {
       p_thick = -p_thick;
       pz = z;
     }
@@ -40,8 +40,6 @@ class Particles {
     float px = map(x / pz, 0, 1, 0, p_size);
     float py = map(y / pz, 0, 1, 0, p_size);
     pz = z;
-  //  line(px, py, sx, sy);
 
-    //line on PVector that sparks out on each of the particles
   }
 }
