@@ -73,9 +73,6 @@ void setup() {
     //nodeSize = nodes.radius1;
   } 
 
-  ////XXXX
-
-
 
   //Initializing the images the of the numbers
   for (int i = 0; i < numbers.length; i++)
@@ -102,9 +99,9 @@ void setup() {
 
 
   //Places inside the Portal initialized here
-  SolarSystem sun = new SolarSystem(0, 0.01, 0, "sun.png");
-  SolarSystem earth = new SolarSystem( 310, 1/2, 0.05, "earth.png");
-  SolarSystem moon = new SolarSystem( 120, 200, 0.65, "moon.png");
+  SolarSystem sun = new SolarSystem(open_port, 0, 0.01, 0, "sun.png");
+  SolarSystem earth = new SolarSystem(open_port, 310, 1/2, 0.05, "earth.png");
+  SolarSystem moon = new SolarSystem(open_port, 120, 200, 0.65, "moon.png");
   //Adding the children of the ArrayList
   system.add(sun);
   sun.add(earth);

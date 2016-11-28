@@ -1,21 +1,29 @@
 class Portal {
-  float x, y;
+  PVector loc;
+  //PVector vel;
   float radius;
-  float r;
+  boolean grow = true;
+  float r;    //r for rotation
   float c;
-  // PVector v;
 
   //Constructor
   Portal() {
-    x = width/2;
-    y = height/2;
-    radius = 450;
+    loc = new PVector(width/2, height/2);
+    //vel = new PVector(0, 1);
+    radius = 0;
     r = 0;
     c = 30;
-
-    // v = 0;
   }
 
+  void render() 
+  {
+    if (grow) {
+      radius += 1.5;
+      if (radius == 450) {
+        grow = false;
+      }
+    }
+  }
 
   void display()
   {
@@ -29,6 +37,7 @@ class Portal {
     c = c + 0.8;
 
     if (mousePressed) {
+      render();
       fill(0, 0, random(5, 10));
       pushMatrix();
       translate(width/2, height/2);
@@ -38,7 +47,7 @@ class Portal {
       r = r + 0.009;
       popMatrix();
 
-      ellipse(x, y, radius, radius);
+      ellipse(loc.x, loc.y, radius, radius);
 
       if (keyPressed)
       {
@@ -48,8 +57,8 @@ class Portal {
       //  r = map(mouseX, mouseY, width, 0, 20);
 
       fill(random(mouseX/3, 220), 50, random(240, 255));
-      ellipse(x, y, radius+20, radius+20);
-      ellipse(x, y, radius, radius);
+      ellipse(loc.x, loc.y, radius+20, radius+20);
+      ellipse(loc.x, loc.y, radius, radius);
 
       pushMatrix();
       rectMode(CENTER);
@@ -68,7 +77,7 @@ class Portal {
       popMatrix();
 
       noFill();
-      ellipse(x, y, radius-200, radius-200);
+      ellipse(loc.x, loc.y, radius-200, radius-200);
 
 
       pushMatrix();

@@ -61,7 +61,9 @@ class GameOfLife {
   }
 
   void display() {
-
+    
+    //I intentionally left the GoL to be running while radius of port was not yet 450 since I thought it looked cool with GoL growing slowly
+    //Hence the bonus place
     for ( int i = 0; i < columns; i++) {
       for ( int j = 0; j < rows; j++) {
 

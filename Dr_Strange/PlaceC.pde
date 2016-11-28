@@ -1,6 +1,5 @@
 class EiffelTower extends StatueOfLiberty {
   PImage ET;
-  Portal port;
 
   EiffelTower(Portal port, float _X, float _Y ) {
     super(port, _X, _Y);
@@ -9,6 +8,10 @@ class EiffelTower extends StatueOfLiberty {
 
 
   void display() {
+    if (this.port.radius != 450)
+    {
+      return;
+    }
 
     image(ET, x, y, 200, 300);
   }
