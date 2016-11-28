@@ -3,6 +3,7 @@ class Nodes
   //Once all five nodes which surrounds the portal are all connected by
   //pressing/hovering the buttons with CreatePortal
   //The portal should then open by passing down the class Portal
+  String abilityName;
   PVector location; 
   PVector locNodes;
   float x, y;
@@ -11,6 +12,7 @@ class Nodes
   float c;
 
   Nodes(TableRow row) { 
+    abilityName = row.getString("Ability Name");
     location = new PVector(row.getFloat("X"), row.getFloat("Y")); 
     locNodes = new PVector(map(location.x, 0, 1200, 0, width), 
       map(location.y, 0, 700, 0, height));
@@ -49,4 +51,10 @@ class Nodes
     endShape(CLOSE);
     popMatrix();
   }
+  
+   String toString()
+   {
+     return abilityName;
+   }
+     
 }

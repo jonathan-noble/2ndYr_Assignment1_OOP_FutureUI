@@ -1,7 +1,12 @@
-/*import peasy.*;
- import ddf.minim.*;
- 
- PeasyCam cam; 
+/*
+ Author:   Jonathan Noble - C15487922
+ Year:     DT282/2
+ Program:  Assignment1_OOP (Doctor Strange Portal UI)
+ Due Date: 29/11/2016
+ */
+
+/*
+import ddf.minim.*;
  Minim minim;
  AudioPlayer player;
  */
@@ -40,12 +45,13 @@ GameOfLife gol;
 void setup() {
   size(1200, 700);
   colorMode(HSB);
+
   /*
   minim = new Minim(this);
    player = minim.loadFile("music.mp3");   
    player.play();
+   
    */
-
   //Initializing the portal and it's magic wand
   open_port = new Portal();
   createPort = new createPortal();
@@ -101,7 +107,7 @@ void setup() {
 
   sol = new StatueOfLiberty(open_port, -50, -80);
   eiffel = new EiffelTower(open_port, -103, -90);
-  bud = new Buddha(open_port, -100, 10);
+  bud = new Buddha(open_port, -150, -130);
   gol = new GameOfLife(open_port);
 
 
@@ -120,9 +126,19 @@ void draw()
   float delta = (millis() - lastTime) / 1000.0f;
 
   for (Nodes node : nodes) {
+    float x = node.location.x;
+    float y = node.location.y;
     node.update();
     node.display();
+
+    if (mouseX >= x && mouseX <= x + width/2 && 
+      mouseY >= y && mouseY <= y + height/2) {
+      textAlign(LEFT, CENTER);
+      fill(255);
+      text(node.abilityName, x + 10, y - 2);
+    }
   }
+
 
   for (BackGround backg : bg) {
     backg.update();
