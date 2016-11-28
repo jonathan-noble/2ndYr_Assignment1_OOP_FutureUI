@@ -69,12 +69,12 @@ class GameOfLife {
         }
         pushMatrix();
         if ((board[i][j] == 1)) 
-          fill(0);
+          fill(120, 200, 200);
         else 
         translate(-width/2, -height/2);
         //translate(mouseX/2, mouseY/2);
-        fill(255); 
-        stroke(0);
+        fill(145, 255, 255); 
+        stroke(20);
         rect(i*cellWidth, j*cellWidth, cellWidth, cellWidth);
         popMatrix();
       }

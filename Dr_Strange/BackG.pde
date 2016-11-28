@@ -67,14 +67,14 @@ class BG_Objects extends BackGround {
   PImage bunny;
   PImage clock;
   PImage car;
-  PImage superman;
+  PImage thor;
 
   BG_Objects(Portal port, float _x, float _y, float _z) {
     super(port, _x, _y, _z);
     bunny = loadImage("bunny2.png");
     clock = loadImage("grandclock.png");
     car = loadImage("dmc.png");
-    superman = loadImage("superman.png");
+    thor = loadImage("thor.png");
   }
 
   void update()
@@ -97,10 +97,10 @@ class BG_Objects extends BackGround {
 
 
     //The images are intentionally constant at changing the size and position since these objects tend to be visually "warped"
-    //image(bunny, sy - 200, sx - 100, px/4, py/2 );
-    //image(clock, sx/3, sy/6, px/3, py/2); 
-    //image(car, sx/10, sy - 200, px/3, py/2); 
-    //image(superman, sy - 100, sx - 150, px/2, py/1.5 );
+    image(bunny, sy - 200, sx - 100, px/4, py/2 );
+    image(clock, sx/3, sy/6, px/3, py/2); 
+    image(car, sx/10, sy - 200, px/3, py/2); 
+    image(thor, sy - 100, sx - 150, px/2, py/1.5 );
     popMatrix();
   }
 } // end class BG_Objects

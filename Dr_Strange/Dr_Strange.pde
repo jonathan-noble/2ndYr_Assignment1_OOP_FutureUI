@@ -28,12 +28,16 @@ PImage numbers[] = new PImage[4];
 Particles[] part = new Particles[30];
 
 //Declaring the places inside the Portal
-SolarSystem sun;
+ArrayList<SolarSystem> system = new ArrayList <SolarSystem>();
+int lastTime = 0;
+StatueOfLiberty sol;
+EiffelTower eiffel;
+Buddha bud;
 GameOfLife gol;
 
 
+
 void setup() {
-  // size(800, 600, P3D);
   size(1200, 700);
   colorMode(HSB);
   /*
@@ -56,10 +60,11 @@ void setup() {
   } 
 
   //XXXX
-  nodeX = this.nodes.x;
-  nodeY = this.nodes.y;
-  nodeSize = this.nodes.radius1;
-
+  /*  nodeX = this.nodes.x;
+   nodeY = this.nodes.y;
+   nodeSize = this.nodes.radius1;
+   
+   */
   //Initializing the images the of the numbers
   for (int i = 0; i < numbers.length; i++)
   {
@@ -85,8 +90,18 @@ void setup() {
 
 
   //Places inside the Portal initialized here
-  sun = new SolarSystem(50, 0, 0);
-  sun.spawnMoons(1, 1);
+  SolarSystem sun = new SolarSystem(0, 0.01, 0, "sun.png");
+  SolarSystem earth = new SolarSystem( 310, 1/2, 0.05, "earth.png");
+  SolarSystem moon = new SolarSystem( 120, 200, 0.65, "moon.png");
+  system.add(sun);
+  sun.add(earth);
+  earth.add(moon);
+  lastTime = millis();
+
+
+  sol = new StatueOfLiberty(open_port, -50, -80);
+  eiffel = new EiffelTower(open_port, -103, -90);
+  bud = new Buddha(open_port, -100, 10);
   gol = new GameOfLife(open_port);
 
 
@@ -100,9 +115,9 @@ void setup() {
 
 void draw() 
 {
-  int count = 0;
   background(random(mouseX/6, 2 * this.open_port.radius % 255), 200, 50);
-
+  int count = 0;
+  float delta = (millis() - lastTime) / 1000.0f;
 
   for (Nodes node : nodes) {
     node.update();
@@ -121,7 +136,7 @@ void draw()
   createPort.display();
   connectNodes(mouseX, mouseY);
 
-  if (exec) // if all nodes are Connected == true
+  if (mousePressed == true) // if (exec) // if all nodes are Connected == true
   {
     open_port.display();
 
@@ -130,27 +145,43 @@ void draw()
     {
       if (key == '1')
       {
-        sun.display();
-        sun.orbit();
+        pushMatrix();
+        for (SolarSystem solarS : system) {
+          solarS.display();
+          solarS.update(delta);
+        }
+        popMatrix();
+        lastTime = millis();
         showNumbers();
       }
 
       if (key == '2')
       {
-
+        sol.display();
         showNumbers();
       }
       if (key == '3')
       {
-
+        eiffel.display();
         showNumbers();
       }
 
       if (key == '4')
       {
+        bud.display();
+      }
+
+      if (key == '5')
+      {
         gol.generate();
         gol.display();
+        showNumbers();
+      }
 
+      if (key == '6')
+      {
+        gol.generate();
+        gol.display();
         showNumbers();
       }
     }
@@ -192,7 +223,7 @@ boolean overNodes(float x, float y, float radius)
 
   float disX = x - mouseX;
   float disY = y - mouseY;
-  if (sqrt(sq(disX) + sq(disY)) < diameter/2 ) {
+  if (sqrt(sq(disX) + sq(disY)) < radius/2 ) {
     return true;
   } else {
     return false;

@@ -14,8 +14,8 @@ class Nodes
     location = new PVector(row.getFloat("X"), row.getFloat("Y")); 
     locNodes = new PVector(map(location.x, 0, 1200, 0, width), 
       map(location.y, 0, 700, 0, height));
-    x = (row.getFloat("X"));
-    y = (row.getFloat("Y"));
+    x = width/2;
+    y = height/2;
     radius1 = 6;
     radius2 = 12;
     npoints = 4;
