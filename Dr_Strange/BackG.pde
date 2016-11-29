@@ -75,7 +75,7 @@ class BG_Objects extends BackGround {
   //super gets the value from the parent class
   BG_Objects(Portal port, float _x, float _y, float _z) {
     super(port, _x, _y, _z);
-    bunny = loadImage("bunny2.png");
+    bunny = loadImage("bunny.png");
     clock = loadImage("grandclock.png");
     car = loadImage("dmc.png");
     thor = loadImage("thor.png");

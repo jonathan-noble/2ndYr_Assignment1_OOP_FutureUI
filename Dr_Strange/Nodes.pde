@@ -23,7 +23,6 @@ class Nodes
   void display() {
     stroke(random(20, 45), 255, random(200, 255), c);
     strokeWeight(5);
-    smooth();
     fill(0, 0, 0, c);
     //shade of color is being incremented
     c = c + 1;

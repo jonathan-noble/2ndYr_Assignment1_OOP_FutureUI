@@ -33,7 +33,6 @@ class Portal {
 
     stroke(random(20, 45), 255, random(200, 255), c);
     strokeWeight(5);
-    smooth();
     fill(0, 0, 0, c);
     c = c + 0.8;
 
@@ -54,8 +53,6 @@ class Portal {
       {
         return;
       }
-
-      //  r = map(mouseX, mouseY, width, 0, 20);
 
       fill(random(mouseX/3, 220), 50, random(240, 255));
       ellipse(loc.x, loc.y, radius+20, radius+20);
