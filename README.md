@@ -4,7 +4,7 @@
 
 ___This assignment is loosely inspired by the recent Marvel film Doctor Strange. I made the User Interface as classic but still as complex as a futuristic marvel wizard. The user can summon a portal where a user is able to choose a place to teleport to.___ 
 
-* The portal itself should be very interactive and fun with the user on events: 
+* The portal itself should be very interactive and fun with the user on events: *
 1. When mouse is clicked and moved, the user is given a chance to create a portal by drawing a portal-like form
 2. The user must draw the portal in accordance to the position of the nodes. Prepare to test your abilities wisely to summon a portal!
 3. The portal should open only right after all the nodes are connected (HINT: ESPECIALLY ON THE MIDDLE NODE)
