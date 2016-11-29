@@ -1,5 +1,5 @@
 # Assignment1_OOP
-This assignment is loosely inspired by the recent Marvel film Doctor Strange. I aim to summon a portal where a user can choose a place to teleport to. 
+This assignment is loosely inspired by the recent Marvel film Doctor Strange. I made the User Interface as classic but still as complex as a futuristic marvel wizard. The user can summon a portal where a user is able to choose a place to teleport to. 
 The portal itself should be very interactive and fun with the user on events: 
 1. When mouse is clicked and moved, the user is given a chance to create a portal by drawing a portal-like form
 2. The user must draw the portal in accordance to the position of the nodes. Prepare to test your abilities wisely to summon a portal!
@@ -28,7 +28,7 @@ The background should use inheritance which includes Easter Eggs:
 
 The portal should include:
 1. Shapes combined to form the seal of Solomon (just like in the film) rotating vigorously clockwise while it's closed
-2. A class of orangey particles spinning as it rotates around the portal
+2. A class of glowing and shrowing(shrinking and growing) particles spinning as it rotates around the portal
 3. Number on the corner of the portal every time the user chooses a different place
 
-[![Video] https://www.youtube.com/watch?v=JowSOUzXRAM&feature=youtu.be
+[![Video] https://www.youtube.com/watch?v=JowSOUzXRAM
