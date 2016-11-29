@@ -6,7 +6,6 @@ class Nodes
   String abilityName;
   PVector location; 
   PVector locNodes;
-  float x, y;
   float radius1, radius2; 
   int npoints;
   float c;
@@ -14,17 +13,11 @@ class Nodes
   Nodes(TableRow row) { 
     abilityName = row.getString("Ability Name");
     location = new PVector(row.getFloat("X"), row.getFloat("Y")); 
-    locNodes = new PVector(map(location.x, 0, 1200, 0, width),   // value of location from table is being mapped to the screen's size
-      map(location.y, 0, 700, 0, height));
-    x = width/2;
-    y = height/2;
+    locNodes = new PVector(map(location.x, 0, 1200, 0, width),  
+      map(location.y, 0, 700, 0, height));  // value of location from table is being mapped to the screen's size
     radius1 = 6;
     radius2 = 12;
     npoints = 4;
-  }
-
-
-  void update() {
   }
 
   void display() {
@@ -34,7 +27,6 @@ class Nodes
     fill(0, 0, 0, c);
     //shade of color is being incremented
     c = c + 1;
-    
     
     // Draw a star/diamond shape as nodes
     pushMatrix();
@@ -49,7 +41,6 @@ class Nodes
       sx = locNodes.x +  cos(i+halfTheta) * radius1;
       sy = locNodes.y + sin(i+halfTheta) * radius1;
       vertex(sx, sy);
-      ellipse(x, y, radius1, radius1);
     }
     endShape(CLOSE);
     popMatrix();

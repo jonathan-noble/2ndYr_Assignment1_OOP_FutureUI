@@ -25,8 +25,9 @@ Portal open_port;
 createPortal createPort;
 ArrayList<Nodes> nodes = new ArrayList<Nodes>();
 boolean exec = false;
+float count = 0;
 float nodeX, nodeY;
-float nodeSize;
+float nodeSize1, nodeSize2;
 
 //Declaring the images of the numbers 
 PImage numbers[] = new PImage[4];
@@ -49,10 +50,11 @@ void setup() {
   colorMode(HSB);
 
 
-
-  //  minim = new Minim(this);
-  //  player = minim.loadFile("music.mp3");   
-  //  if keyPressed " " player.play();
+  //minim = new Minim(this);
+  //player = minim.loadFile("music.mp3");   
+  ////  if keyPressed " " 
+  //player.play();
+  ////loadFont()
 
   //Initializing the opening intro
   //marvel = loadImage("marvel.png");
@@ -68,9 +70,10 @@ void setup() {
   {
     Nodes node = new Nodes(row);//open_port);
     nodes.add(node);
-    //nodeX = nodes.locNodes.x;
-    //nodeY = nodes.locNodes.y;
-    //nodeSize = nodes.radius1;
+    nodeX = node.locNodes.x;
+    nodeY = node.locNodes.y;
+    nodeSize1 = node.radius1;
+    nodeSize2 = node.radius2;
   } 
 
 
@@ -128,23 +131,7 @@ void draw()
 {
   // image(marvel, width, height);
   background(random(mouseX/6, 2 * this.open_port.radius % 255), 200, 50);
-  int count = 0;
   float delta = (millis() - lastTime) / 1000.0f;
-
-  for (Nodes node : nodes) {
-    float x = node.locNodes.x;
-    float y = node.locNodes.y;
-    node.update();
-    node.display();
-
-    if (mouseX >= x && mouseX <= x + width/2 && 
-      mouseY >= y && mouseY <= y + height/2) {
-      textAlign(LEFT, CENTER);
-      fill(255);
-      text(node.abilityName, x + 18, y - 2);
-    }
-  }
-
 
   for (BackGround backg : bg) {
     backg.update();
@@ -156,10 +143,28 @@ void draw()
   }
 
   createPort.display();
-  connectNodes(mouseX, mouseY);
 
-  if (mousePressed == true) // if (exec) // if all nodes are Connected == true
-  {
+
+  //if (mouseX >= x && mouseX <= x + width && 
+  //  mouseY >= y && mouseY <= y + height) {
+  //  textAlign(LEFT, CENTER);
+  //  fill(255);
+  //  text(node.abilityName, x + 18, y - 2);
+  // }
+
+  nodesConnected();
+
+  for (Nodes node : nodes) {
+    //float x = node.locNodes.x;
+    //float y = node.locNodes.y;
+    node.display();
+
+    if (exec) // if (mousePressed == true)  // if all nodes are Connected == true
+    {
+      count++;
+    }
+  }
+  if (count > 2.5) {
     open_port.display();
 
     translate(width/2, height/2);
@@ -212,41 +217,26 @@ void draw()
       par.update();
       par.display();
     }
-  } // end mousePressed = true
-
-  /*      ONLY USE THIS ONCE YOU'RE FINISHED WITH NODES 
-   THE BACKGROUND ROTATES AROUND THE PORTAL
-   for (BackGround backg : bg) {
-   backg.update();
-   backg.display();
-   }
-   for (BG_Objects bgObj : bgObjects) {
-   bgObj.update();
-   bgObj.display();
-   }
-   */
-
+  }// end mousePressed = true
 }// end draw function
 
-void connectNodes(int x, int y) {
+void nodesConnected() {
 
-  if ( overNodes(nodeX, nodeY, nodeSize)  ) {
+  if (overNodes (nodeX, nodeY, nodeSize1, nodeSize2) ) {
     exec = true;
   } else {
     exec = false;
   }
 }
 
-
-boolean overNodes(float x, float y, float radius) 
+boolean overNodes(float x, float y, float radius1, float radius2) 
 {
-
-  //for (int i = 0; i < nodes.size(); i++) {
-  //  Nodes node = nodes.get(i);
-
   float disX = x - mouseX;
   float disY = y - mouseY;
-  if (sqrt(sq(disX) + sq(disY)) < radius/2 ) {
+  if (sqrt(sq(disX) + sq(disY)) < radius1/2 && sqrt(sq(disX) + sq(disY))< radius2/2 ) {
+    //textAlign(LEFT, CENTER);
+    //fill(255);
+    //text(node.abilityName, x + 18, y - 2);
     return true;
   } else {
     return false;

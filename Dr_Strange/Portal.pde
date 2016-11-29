@@ -2,7 +2,7 @@ class Portal {
   PVector loc;
   //PVector vel;
   float radius;
-  boolean grow = true;
+  boolean grow;
   float r;    //r for rotation
   float c;
 
@@ -11,6 +11,7 @@ class Portal {
     loc = new PVector(width/2, height/2);
     //vel = new PVector(0, 1);
     radius = 0;
+    grow = true;
     r = 0;
     c = 30;
   }
@@ -38,7 +39,7 @@ class Portal {
 
     if (mousePressed) {
       render();
-      fill(0, 0, random(5, 10));
+      fill(0, 0, random(5, 15));
       pushMatrix();
       translate(width/2, height/2);
       rotate(r);

@@ -26,6 +26,7 @@ class SolarSystem {
   //The parameter delta is passed down to ensure the times of revolution is relative to time itself
   void update(float delta) {
     angle += (orbitspeed * delta);
+    //The value of delta is then passed down to every planets
     for (int i = 0; i < planets.size(); i++) {
       planets.get(i).update(delta);
     }
