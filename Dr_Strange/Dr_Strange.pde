@@ -144,7 +144,6 @@ void draw()
 
   createPort.display();
 
-
   //if (mouseX >= x && mouseX <= x + width && 
   //  mouseY >= y && mouseY <= y + height) {
   //  textAlign(LEFT, CENTER);
@@ -155,11 +154,19 @@ void draw()
   nodesConnected();
 
   for (Nodes node : nodes) {
-    //float x = node.locNodes.x;
-    //float y = node.locNodes.y;
     node.display();
 
-    if (exec) // if (mousePressed == true)  // if all nodes are Connected == true
+    float x = node.location.x;
+    float y = node.location.y;
+    
+    if (mouseX >= x && mouseX <= x + width/2 && 
+      mouseY >= y && mouseY <= y + height/2) {
+      textAlign(LEFT, CENTER);
+      fill(255);
+      text(node.abilityName, x + 18, y - 2);
+    }
+
+    if (exec) //if all nodes are connected/hovered == true
     {
       count++;
     }
@@ -221,7 +228,6 @@ void draw()
 }// end draw function
 
 void nodesConnected() {
-
   if (overNodes (nodeX, nodeY, nodeSize1, nodeSize2) ) {
     exec = true;
   } else {
@@ -233,16 +239,13 @@ boolean overNodes(float x, float y, float radius1, float radius2)
 {
   float disX = x - mouseX;
   float disY = y - mouseY;
+  //If Square root of the squared disX is lesser than half of radius is true then return true
   if (sqrt(sq(disX) + sq(disY)) < radius1/2 && sqrt(sq(disX) + sq(disY))< radius2/2 ) {
-    //textAlign(LEFT, CENTER);
-    //fill(255);
-    //text(node.abilityName, x + 18, y - 2);
     return true;
   } else {
     return false;
   }
 }
-
 
 void showNumbers() {
   float imgPosX = -width/2.05;
