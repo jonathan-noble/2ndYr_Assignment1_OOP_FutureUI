@@ -1,6 +1,5 @@
 class Portal {
   PVector loc;
-  //PVector vel;
   float radius;
   boolean grow;
   float r;    //r for rotation
@@ -9,7 +8,6 @@ class Portal {
   //Constructor
   Portal() {
     loc = new PVector(width/2, height/2);
-    //vel = new PVector(0, 1);
     radius = 0;
     grow = true;
     r = 0;
@@ -28,9 +26,6 @@ class Portal {
 
   void display()
   {
-    // PVector offset = PVector.random3D();
-    //v.add(offset);
-
     stroke(random(20, 45), 255, random(200, 255), c);
     strokeWeight(5);
     fill(0, 0, 0, c);
@@ -66,6 +61,7 @@ class Portal {
       r = r + 0.009;
       popMatrix();
 
+      //Notice the -r and r on both of the shapes that were called so they rotate on separate direction
       pushMatrix();
       translate(width/2, height/2);
       rectMode(CENTER);
@@ -77,11 +73,9 @@ class Portal {
       noFill();
       ellipse(loc.x, loc.y, radius-200, radius-200);
 
-
       pushMatrix();
       translate(width*0.5, height/2);
       rotate(r);
-      //star(123, 60, 100, 3);
       star(0, 0, 123, 60, 3);
       r = r + 0.009;
       popMatrix();
@@ -89,7 +83,6 @@ class Portal {
       pushMatrix();
       translate(width*0.5, height/2);
       rotate(r);
-      //star(-123, -60, 100, 3);
       star(0, 0, -123, -60, 3);
       r = r + 0.009;
       popMatrix();
@@ -113,9 +106,3 @@ class Portal {
     endShape(CLOSE);
   }
 }
-
-/*
-  void offset(float x, float y, Array
- }
- 
- */

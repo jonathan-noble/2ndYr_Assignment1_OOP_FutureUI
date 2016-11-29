@@ -1,6 +1,6 @@
 class createPortal 
 {
-  //It serves like a wizard's powerful hand to create a portal
+  //It serves like a wizard's powerful wand to create a portal
   int[] x;
   int[] y;
   int iPos;

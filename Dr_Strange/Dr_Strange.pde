@@ -7,16 +7,14 @@
 
 // I am declaring everything in order of sequence and priority
 
-
-
 //Declare Opening intro
 Intro intro;
-PFont font1;
+PFont font;
 
 //Declaring the sounds
 import ddf.minim.*;
 Minim minim;
-AudioPlayer player, bonjour, america, cantonese, portal_sound;
+AudioPlayer player, bonjour, america, cantonese, portal_sound, alien;
 
 //Declaring Starfield background and the portal
 BackGround[] bg = new BackGround[500];
@@ -45,17 +43,17 @@ EiffelTower eiffel;
 Buddha bud;
 GameOfLife gol;
 
-
-
 void setup() {
   size(1250, 700);
   colorMode(HSB);
   smooth();
 
-  // intro.draw();
+  //Initializing the very quick intro
+  intro = new Intro();
+  intro.display();
 
-  // font1 = loadFont("oldenglish.vlw");
-  // textFont(font1);
+  //Initializing the font
+  font = loadFont("felix.vlw");
 
   //Initializing all the sounds
   minim = new Minim(this);
@@ -63,10 +61,9 @@ void setup() {
   bonjour = minim.loadFile("bonjour.mp3"); 
   america = minim.loadFile("america.mp3"); 
   cantonese = minim.loadFile("cantonese.mp3"); 
+  alien = minim.loadFile("alien.mp3"); 
   portal_sound = minim.loadFile("portal_sound.mp3"); 
-  ////  if keyPressed " " 
   player.loop();
-  ////loadFont()
 
   //Initializing the portal and it's magic wand
   open_port = new Portal();
@@ -137,8 +134,7 @@ void setup() {
 
 
 void draw() 
-{
-  // image(marvel, width, height);
+{  
   background(random(mouseX/6, 2 * this.open_port.radius % 255), 200, 50);
   float delta = (millis() - lastTime) / 1000.0f;
 
@@ -153,13 +149,6 @@ void draw()
 
   createPort.display();
 
-  //if (mouseX >= x && mouseX <= x + width && 
-  //  mouseY >= y && mouseY <= y + height) {
-  //  textAlign(LEFT, CENTER);
-  //  fill(255);
-  //  text(node.abilityName, x + 18, y - 2);
-  // }
-
   nodesConnected();
 
   for (Nodes node : nodes) {
@@ -172,10 +161,9 @@ void draw()
       mouseY >= y && mouseY <= y + height/2) {
       textAlign(LEFT, CENTER);
       fill(255);
-      text(node.abilityName, x + 18, y - 2);
-      // text(" Try hitting the center YOUNG PADAWAN!", width/1.5, height/2, 50, 50);
+      textFont(font);
+      text(node.abilityName, x + 35, y - 2);
     }
-
 
     if (exec) //if all nodes are connected/hovered == true
     {
@@ -227,13 +215,8 @@ void draw()
         {
           gol.generate();
           gol.display();
+          alien.play();
           showNumbers();
-        }
-
-        if (key == '6')
-        {
-
-          //showNumbers();
         }
       }
 
@@ -242,8 +225,7 @@ void draw()
         par.display();
       }
     }
-  }
-  // end mousePressed = true
+  }    // end mousePressed = true
 }// end draw function
 
 void nodesConnected() {
@@ -272,8 +254,6 @@ void showNumbers() {
   float imgSizeX = 250;
   float imgSizeY = 300;
 
-  //Lerp the image's color to fade from solid to transparent
-
   if (keyPressed)
   { 
     if (key == '1')
@@ -287,7 +267,7 @@ void showNumbers() {
 
     if (key == '4')
       image(numbers[3], imgPosX, imgPosY, imgSizeX, imgSizeY);
-      
+
     if (key == '5')
       image(numbers[4], imgPosX, imgPosY, imgSizeX, imgSizeY);
   }

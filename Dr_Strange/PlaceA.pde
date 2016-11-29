@@ -1,5 +1,5 @@
 class SolarSystem {
-  // Self explanatory place
+  // 1 Sun, 1 Moon, 1 Earth
   ArrayList <SolarSystem> planets = new ArrayList<SolarSystem>();
   Portal port;
   float radius;
