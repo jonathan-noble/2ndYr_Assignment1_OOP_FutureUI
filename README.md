@@ -1,37 +1,33 @@
 # Assignment1_OOP
-This assignment is loosely inspired by the film Doctor Strange. I aim to create a portal where a user can choose a place to teleport to. 
+This assignment is loosely inspired by the recent Marvel film Doctor Strange. I aim to summon a portal where a user can choose a place to teleport to. 
 The portal itself should be very interactive and fun with the user on events: 
-1. When mouse is clicked and moved, the user is given a chance to create a portal by drawing a portal-like shape
-2. The portal should open only right after the correct pattern is drawn 
-3. The user has options by pressing keys 1-5 to change the place to teleport to (CHECK)
+1. When mouse is clicked and moved, the user is given a chance to create a portal by drawing a portal-like form
+2. The user must draw the portal in accordance to the position of the nodes. Prepare to test your abilities wisely to summon a portal!
+2. The portal should open only right after all the nodes are connected (HINT: ESPECIALLY ON THE MIDDLE NODE)
+3. The user has options by pressing keys 1-5 to change the place to teleport to 
 
 It comes along with a user interface relative to the portal, such as: 
-1. Number of place chosen pops out in a sequential order of the screen and eventually fades out
-3. Battery status to implement remaining power left (using boolean) 
-4. Rewind, slow down, fast forward the environment of the place  (CHECK)
-5. Sound effects when portal opens, etc.
+1. Number of main places relevant to the movie pops out once the user presses the numpads/1-5
+  The main places (from the film) to teleport to:
+  a. Solar System - Sun, Earth and it's Moon - where the Earth is orbiting around the Sun very slowly and the moon orbits around the Earth 
+  b. New York 
+  c. Paris (supposedly it's London but I realized I already have a grandfather clock and I don't want things to be mixed up)
+  BONUS PLACE
+  d.Game Of Life
+2. Rewind(by dragging the mouse to the left), slow down, fast forward the environment of the place esp on Solar System
+3. Sound effects when portal opens. e.g. "Bonjour" on Paris, etc.
 
-The background should use inheritance which should include:
-1. Universe
+The background should use inheritance which includes Easter Eggs:
+1. Universe - can also rewind, slow down and fast forward
 2. A random grandfather clock
-3. PShapes
-4. Iconic people
-5. BUNNY SUICIDE
+3. The DeLorean DMC 12 car from Back from the Future
+4. BUNNY SUICIDE - Kindly search this iconic comedy cartoon. One will understand why I put the bunnies in my code. :D
+5. Last but not the least, I put in Thor. You should know once you have watched the film.
+(DISCLAIMER: Since these objects are in a time warp, I thought of having these PImages look like their figure is being distorted constantly by changing their size every time they are called from the centre)
 
 The portal should include:
-1. Rotate wildly clockwise - PVector encapsulated
-2. Orangey particles spinning as it rotates
-3. Possibility of letting the user choose where he could execute the portal by using translate(pmouseX, pmouseY)
-4. Possibility of  changing the size of the portal by scrolling up or down
+1. Shapes combined to form the seal of Solomon (just like in the film) rotating vigorously clockwise while it's closed
+2. A class of orangey particles spinning as it rotates around the portal
+3. Number on the corner of the portal every time the user chooses a different place
 
-The places to teleport to:
-a. Solar System - mainly Earth
-b. YASC
-c. Game Of Life
-d. Funny Video 
-e. World of Trump/ Stan Lee?   GIF || Someone's face popping out randomly
-f. Peaceful aquarium with at least 3 fishes swimming around
-g. "No rabbits were harmed"  in string and can be tickled
-h. Pong game
-i. Clock
-
+[![Video]
