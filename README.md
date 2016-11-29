@@ -24,10 +24,11 @@ The background should use inheritance which includes Easter Eggs:
 4. BUNNY SUICIDE - Kindly search this iconic comedy cartoon. One will understand why I put the bunnies in my code. :D
 5. Last but not the least, I put in Thor. You should know once you have watched the film.
 (DISCLAIMER: Since these objects are in a time warp, I thought of having these PImages look like their figure is being distorted constantly by changing their size every time they are called from the centre)
+6. The opening sequence of Marvel films is the intro before everything else
 
 The portal should include:
 1. Shapes combined to form the seal of Solomon (just like in the film) rotating vigorously clockwise while it's closed
 2. A class of orangey particles spinning as it rotates around the portal
 3. Number on the corner of the portal every time the user chooses a different place
 
-[![Video]
+[![Video] https://www.youtube.com/watch?v=JowSOUzXRAM&feature=youtu.be
